@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import {Button} from '@components/index.ts';
-import { buttonCopy } from '@types';
+import { buttonCopy, buttonVariant } from '@types';
 
 const heroCopy = {
 	copy: "Aster.motion is an open source web component library. Copy, paste, and edit the components or the design system for your own web projects. Design and coded by Miko.CST."
@@ -21,6 +21,7 @@ const heroCopy = {
 				<p class = "max-w-[70ch]">{heroCopy.copy}</p>
                 <Button
 					buttonCopy= {buttonCopy.CLICK_ME}
+					variant={buttonVariant.Primary}
 					client:load
 				/>
             </div>

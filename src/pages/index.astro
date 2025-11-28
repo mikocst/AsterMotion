@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
-import {Button} from '../components/index.ts';
+import {Button} from '@components/index.ts';
+import { buttonCopy } from '@types';
 ---
 
 <html lang="en">
@@ -11,9 +12,12 @@ import {Button} from '../components/index.ts';
 	</head>
 	<body>
         <main>
-            <div>
-                <h1 class="text-lg text-blue-700">Welcome to AsterMotion</h1>
-                <Button client:load/>
+            <div class = "flex flex-col items-center justify-center">
+                <h1 class="text-xl text-blue-700">Welcome to AsterMotion</h1>
+                <Button
+					buttonCopy= {buttonCopy.CLICK_ME}
+					client:load
+				/>
             </div>
 		</main>
 

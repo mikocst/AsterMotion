@@ -1,7 +1,11 @@
 import {motion} from 'motion/react';
+import { buttonCopy } from '../types/types';
 
+interface ButtonProps {
+    buttonCopy: buttonCopy;
+}
 
-const Button = () => {
+const Button = ({buttonCopy}: ButtonProps) => {
     const MotionButton = motion('button');
     return (
         <MotionButton
@@ -10,7 +14,7 @@ const Button = () => {
             transition={{ duration: 0.1 }}
             className="px-4 py-2 bg-blue-500 text-white rounded-lg"
         >
-            Click Me
+            {buttonCopy}
         </MotionButton>
     )
 }

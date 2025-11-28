@@ -2,6 +2,10 @@
 import '../styles/global.css';
 import {Button} from '@components/index.ts';
 import { buttonCopy } from '@types';
+
+const heroCopy = {
+	copy: "Aster.motion is an open source web component library. Copy, paste, and edit the components or the design system for your own web projects. Design and coded by Miko.CST."
+}
 ---
 
 <html lang="en">
@@ -12,8 +16,9 @@ import { buttonCopy } from '@types';
 	</head>
 	<body>
         <main>
-            <div class = "flex flex-col items-center justify-center">
-                <h1 class="text-xl text-blue-700">Welcome to AsterMotion</h1>
+            <div class = "flex flex-col items-start justify-start px-16 py-8">
+                <h1 class="text-4xl text-primary font-bold">Welcome to AsterMotion</h1>
+				<p class = "max-w-[70ch]">{heroCopy.copy}</p>
                 <Button
 					buttonCopy= {buttonCopy.CLICK_ME}
 					client:load

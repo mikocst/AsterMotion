@@ -8,7 +8,8 @@
       "@components": ["src/components/index.ts"],
       "@components/*": ["src/components/*"],
       "@types": ["src/types/index.ts"],
-      "@types/*": ["src/types/*"] 
+      "@types/*": ["src/types/*"],
+      "@assets/": ["assets/*"] 
     }
   }
 }

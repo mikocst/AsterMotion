@@ -1,9 +1,20 @@
 export enum buttonCopy {
-    CLICK_ME = "Click Me",
-    COPY_CODE = "Copy Code"
+    BROWSE = "Browse Components",
+    COPY_CODE = "Copy Code",
+    ABOUT = "About Aster"
 }
 
 export enum buttonVariant {
     Primary = 1,
     Secondary = 2
+}
+
+export enum componentShowcaseCopy {
+    ACCORDION = "Accordion",
+    BUTTONS = "Buttons",
+    SWITCHES = "Switches",
+    TABS = "Tabs",
+    IMAGE_CARDS = "Image Cards",
+    IMAGE_SLIDERS = "Image Sliders",
+    SERVICES_CARDS = "Services Cards",
 }

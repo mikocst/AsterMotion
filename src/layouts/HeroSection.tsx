@@ -2,7 +2,7 @@ import { buttonCopy, buttonVariant } from '@types';
 import Button from '@components/Button';
 
 const heroCopy = {
-    copy: "Aster.motion is an open source web component library. Copy, paste, and edit the components or the design system for your own web projects. Design and coded by Miko.CST."
+    copy: "Aster.motion is an open-source web component library. Copy, paste, and edit the components or the design system for your own web projects. Designed and coded by Miko.CST."
 };
 
 const HeroSection = () => {

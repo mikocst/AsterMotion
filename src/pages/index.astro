@@ -2,6 +2,8 @@
 import '../styles/global.css';
 import {HeroSection, ComponentBentoGrid} from 'src/layouts';
 import NavBar from 'src/components/NavBar';
+import { AsterProvider } from 'src/context/AsterContext';
+
 
 const heroCopy = {
 	copy: "Aster.motion is an open source web component library. Copy, paste, and edit the components or the design system for your own web projects. Design and coded by Miko.CST."
@@ -16,6 +18,7 @@ const heroCopy = {
 	</head>
 	<body>
         <main>
+			<AsterProvider client:load>
             <div class = "relative">
 				<NavBar/>
 				<div class = "flex flex-col items-center justify-start gap-8 px-8 py-16">
@@ -27,5 +30,7 @@ const heroCopy = {
 					</div>
 				</div>
 			</div>
+			</AsterProvider>
 		</main>
+	</body>
 

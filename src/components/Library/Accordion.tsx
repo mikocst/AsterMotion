@@ -18,6 +18,7 @@ const accordionItems = [
 ]
 
 const MotionDiv = motion.create('div');
+const MotionChevronLeft = motion.create(ChevronLeft);
 
 const Accordion = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -41,7 +42,11 @@ const Accordion = () => {
              >
                 <div className = "flex flex-row justify-between">
                     {item.title}
-                    <ChevronLeft className="text-gray-400 w-[20px] h-[20px]" />
+                    <MotionChevronLeft
+                        animate = {{rotate: activeIndex === index ? -90 : 0}}
+                        className="text-gray-400 w-[20px] h-[20px]"
+                    >
+                    </MotionChevronLeft>
                 </div>
                 {activeIndex === index && (
                     <MotionDiv

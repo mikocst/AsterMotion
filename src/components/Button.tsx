@@ -6,8 +6,9 @@ interface ButtonProps {
     variant: buttonVariant;
 }
 
+  const MotionButton = motion.create('button');
+
 const Button = ({buttonCopy, variant}: ButtonProps) => {
-    const MotionButton = motion.create('button');
     const variantStyles = {
         [buttonVariant.Primary]: 'bg-primary text-white',
         [buttonVariant.Secondary]: 'bg-gray-50 border border-gray-100 text-primary'

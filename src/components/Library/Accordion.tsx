@@ -1,5 +1,5 @@
 import { ChevronLeft } from "lucide-react";
-import {motion} from 'motion/react';
+import {AnimatePresence, motion} from 'motion/react';
 import { useState } from "react";
 
 const accordionItems = [
@@ -41,20 +41,27 @@ const Accordion = () => {
              className = "flex flex-col justify-between p-2 border-b border-gray-200 cursor-pointer"
              >
                 <div className = "flex flex-row justify-between">
-                    {item.title}
+                    <p className = "text-gray-700 font-medium">{item.title}</p>
                     <MotionChevronLeft
                         animate = {{rotate: activeIndex === index ? -90 : 0}}
                         className="text-gray-400 w-[20px] h-[20px]"
                     >
                     </MotionChevronLeft>
                 </div>
-                {activeIndex === index && (
+                <AnimatePresence>
+                    {activeIndex === index && (
                     <MotionDiv
                      initial = {{height: 0, opacity: 0}}
-                     animate = {{height: 'auto', opacity: 1}}>
-                        {item.content}
+                     animate = {{height: 'auto', opacity: 1}}
+                     exit={{ height: 0, opacity: 0 }}
+                     transition={{ duration: 0.3, ease: "easeInOut" }}
+                     >
+                        <p className = "text-gray-600">
+                            {item.content}
+                        </p>
                     </MotionDiv>
                 )}
+                </AnimatePresence>
             </div>
             )
         })}

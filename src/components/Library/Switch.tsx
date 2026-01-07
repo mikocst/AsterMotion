@@ -1,4 +1,4 @@
-import {AnimatePresence, motion} from 'motion/react';
+import { motion} from 'motion/react';
 import { useState } from "react";
 
 const MotionDiv = motion.create('div');
@@ -18,9 +18,9 @@ const toggleSwitch = () => {
     animate = {{backgroundColor: isOn ? '#0f327c' : '#e5e7eb'}}
     >
             <MotionDiv 
-                initial = {{left: -2}}
+                initial = {{left: 0}}
                 animate = {{left: isOn ? 0: 20,}}
-                transition = {{type: 'spring', stiffness: 700, damping: 30}}
+                transition = {{type: 'spring', stiffness: 300, damping: 30}}
                 className = "bg-white w-5 h-5 rounded-full absolute left-0"
             />
         </MotionDiv>

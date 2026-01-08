@@ -13,13 +13,13 @@ const toggleSwitch = () => {
 
   return (
     <MotionDiv
-    className = "w-10 h-5 bg-black rounded-full flex items-center cursor-pointer relative p-1"
+    className = "w-10 h-5 rounded-full flex items-center cursor-pointer relative p-1"
     onClick={toggleSwitch}
     animate = {{backgroundColor: isOn ? '#0f327c' : '#e5e7eb'}}
     >
             <MotionDiv 
-                initial = {{left: 0}}
-                animate = {{left: isOn ? 0: 20,}}
+                initial = {{translateX: 20}}
+                animate = {{translateX: isOn ? 20 : 0}}
                 transition = {{type: 'spring', stiffness: 300, damping: 30}}
                 className = "bg-white w-5 h-5 rounded-full absolute left-0"
             />

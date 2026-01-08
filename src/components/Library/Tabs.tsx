@@ -33,13 +33,11 @@ const Tabs = () => {
                     <MotionDiv
                         layoutId = "pill"
                         layout
-                        initial = {{ scale: 1, }}
-                        animate={{ scaleX: [0.1, 1], scaleY: [0.8, 1], }}
-                        transition = {{ type: 'spring', stiffness: 100, damping: 15, duration: 0.5 }}
+                        transition = {{ ease: 'easeInOut', duration: 0.3 }}
                         className = "absolute inset-0 h-auto bg-blue-200 rounded-md z-10 w-full"
                     />
                     )}
-                    <h3 className = {activeTab === index ? "text-blue-800 font-medium relative z-20 px-2" : "text-gray-400 relative z-20 px-2"}>
+                    <h3 className = {activeTab === index ? "text-blue-800 font-medium relative z-20 px-2" : "text-gray-400 relative z-20 px-2 hover:font-medium"}>
                         {tab.title}
                     </h3>
 

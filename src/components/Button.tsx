@@ -21,8 +21,8 @@ const Button = ({buttonCopy, variant}: ButtonProps) => {
     return (
         <MotionButton
             whileHover={hoverVariants[variant]}
-            whileTap={{ scale: 0.9 }}
-            transition={{ duration: 0.2 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ duration: 0.15, ease: 'easeOut' }}
             className={`px-4 py-2 rounded-md font-medium ${variantStyles[variant]}`}
         >
             {buttonCopy}

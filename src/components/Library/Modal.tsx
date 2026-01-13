@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useRef} from "react";
 import Button from "@components/Button";
 import { buttonVariant, buttonCopy } from "@types";
 
@@ -9,22 +9,27 @@ interface DialogProps extends React.HTMLAttributes<HTMLDialogElement> {
 
 const Modal = ({ content, ...props}: DialogProps) => {
 
-  const [isOpen, setIsOpen] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
   const handleOpen = () => {
     console.log("Opening dialog");
-    setIsOpen(true);
+    dialogRef.current.showModal()
+  }
+
+  const handleClose = () => {
+    console.log('is closed')
+    dialogRef.current?.close()
   }
 
   return (
-    <div>
+    <div className = "relative">
         <Button
         variant={buttonVariant.Primary}
         buttonCopy={buttonCopy.OPEN_DIALOG}
         onClick={handleOpen}
         />
         <dialog
-        open = {isOpen === true}
+        ref = {dialogRef}
         className = "w-full max-w-md p-6 border border-gray-200 rounded-lg">
             <div>
                 <h3 className = "text-lg font-medium mb-4">Confirm Changes</h3>
@@ -33,6 +38,7 @@ const Modal = ({ content, ...props}: DialogProps) => {
                     <Button
                     variant = {buttonVariant.Secondary}
                     buttonCopy = {buttonCopy.CANCEL}
+                    onClick={handleClose}
                     />
                     <Button
                     variant = {buttonVariant.Primary}

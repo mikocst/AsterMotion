@@ -3,7 +3,8 @@ export enum buttonCopy {
     COPY_CODE = "Copy Code",
     ABOUT = "About Aster",
     CONFIRM = "Confirm",
-    CANCEL = "Cancel"
+    CANCEL = "Cancel",
+    OPEN_DIALOG = "Open Dialog"
 }
 
 export enum buttonVariant {

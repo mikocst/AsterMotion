@@ -4,11 +4,12 @@ import { buttonCopy, buttonVariant } from '@types';
 interface ButtonProps {
     buttonCopy: buttonCopy;
     variant: buttonVariant;
+    onClick?: () => void;
 }
 
   const MotionButton = motion.create('button');
 
-const Button = ({buttonCopy, variant}: ButtonProps) => {
+const Button = ({buttonCopy, variant, onClick}: ButtonProps) => {
     const variantStyles = {
         [buttonVariant.Primary]: 'bg-primary text-white',
         [buttonVariant.Secondary]: 'bg-gray-50 border border-gray-100 text-primary'
@@ -20,6 +21,7 @@ const Button = ({buttonCopy, variant}: ButtonProps) => {
     }
     return (
         <MotionButton
+            onClick={onClick}
             whileHover={hoverVariants[variant]}
             whileTap={{ scale: 0.97 }}
             transition={{ duration: 0.15, ease: 'easeOut' }}

@@ -1,7 +1,9 @@
 export enum buttonCopy {
     BROWSE = "Browse Components",
     COPY_CODE = "Copy Code",
-    ABOUT = "About Aster"
+    ABOUT = "About Aster",
+    CONFIRM = "Confirm",
+    CANCEL = "Cancel"
 }
 
 export enum buttonVariant {

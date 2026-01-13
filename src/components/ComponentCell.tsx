@@ -1,21 +1,21 @@
-import Input from "./Library/Input";
+import Modal from "./Library/Modal";
 
 interface ComponentCellProps {
       componentName: string;
       componentDemo: string;
 }
 
+const dialogContent = `Are you sure you want to make these changes? This action cannot be undone.`;
+
 const ComponentCell = () => {
   return (
     <div className = "flex flex-col gap-2 p-3 border border-gray-200 rounded-lg">
         <h3 className = "text-lg">Component Cell</h3>
         <div className="p-3 border border-gray-100 rounded-md">
-            <Input
-            label="Demo Input"
-            disabled={false}
-            error={false}
-            placeholder="Type here..."
-             />
+            <Modal
+             title="Confirm Changes"
+              content={dialogContent}
+            />
         </div>
       </div>
   )

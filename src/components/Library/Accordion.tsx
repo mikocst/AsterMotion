@@ -38,7 +38,7 @@ const Accordion = () => {
             <div 
              key = {index}
              onClick = {() => toggleAccordionItem(index)}
-             className = "flex flex-col justify-between p-2 border-b border-gray-200 cursor-pointer"
+             className = "flex flex-col justify-between p-2 cursor-pointer"
              >
                 <div className = "flex flex-row justify-between">
                     <p className = "text-gray-700 font-medium">{item.title}</p>

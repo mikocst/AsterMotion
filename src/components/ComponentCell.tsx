@@ -11,13 +11,11 @@ const ComponentCell = () => {
         <h3 className = "text-lg">Component Cell</h3>
         <div className="p-3 border border-gray-100 rounded-md">
             <Input
-            disabled={true}
-            error = {false}
-            label = "Demo Input"
-            placeholder="Enter text here..."
-            id="input-demo"
-            required={false}
-            />
+            label="Demo Input"
+            disabled={false}
+            error={false}
+            placeholder="Type here..."
+             />
         </div>
       </div>
   )

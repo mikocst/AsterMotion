@@ -1,9 +1,11 @@
-import { motion} from 'motion/react';
+import { cn } from "src/lib/utils"
+import { useRef, useId } from "react"
+
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label: string;
     error: string | boolean;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    ref: React.Ref<HTMLInputElement>;
 }
 
 const variantInputStyles = {
@@ -12,34 +14,50 @@ const variantInputStyles = {
     disabled: 'bg-gray-50 border-gray-100 cursor-not-allowed text-gray-100'
 }
 
-const Input = ({label, error, ...props}: InputProps) => {
+const Input = ({label, error, ref, ...props}: InputProps) => {
+
+    const generatedId = useId();
+    const inputId = props.id || generatedId;
 
     function getInputStyles() {
-        const baseStyles = ["px-3", "py-2", "rounded-md", "border"];
+        const styles = [];
         if (props.disabled) {
-             baseStyles.push(variantInputStyles.disabled);
+            styles.push(variantInputStyles.disabled);
         }
         else if (error) {
-             baseStyles.push(variantInputStyles.error);
+             styles.push(variantInputStyles.error);
         }
         else {
-             baseStyles.push(variantInputStyles.normal);
+             styles.push(variantInputStyles.normal);
         }
-        return baseStyles.join(' ');
+        return styles.join(' ');
     }
 
   return (
     <div className = "flex flex-col gap-1">
         <label
         className = "font-medium text-gray-700"
-        htmlFor={props.id}
+        htmlFor={inputId}
         >
             {label}
         </label>
-        <input 
-        className = {getInputStyles()}
+        <input
         {...props}
-        /> 
+        ref={ref}
+        id={inputId}
+        aria-invalid = {!!error}
+        aria-describedby= {error ? `${inputId}-error` : undefined}
+        className = {cn("px-3 py-2 rounded-md border",
+            getInputStyles())}
+        />
+        {error && typeof error === 'string' && (
+            <p
+            className = "text-sm text-red-600 mt-1"
+            id = {`${inputId}-error`}
+            >
+                {error}
+            </p> 
+        )}
     </div>
   )
 }

@@ -1,6 +1,7 @@
-import {useRef, useCallback} from "react";
+import {useRef} from "react";
 import Button from "@components/Button";
 import { buttonVariant, buttonCopy } from "@types";
+import useMergedRefs from "src/lib/utils/mergedRefs";
 
 interface DialogProps extends React.HTMLAttributes<HTMLDialogElement> {
     content: string;
@@ -9,20 +10,8 @@ interface DialogProps extends React.HTMLAttributes<HTMLDialogElement> {
 
 const Modal = ({ content, ref, ...props}: DialogProps) => {
 
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
-  const setRefs = useCallback((node:HTMLDialogElement | null) => {
-      dialogRef.current = node;
-
-      if(!ref) return;
-
-      if(typeof ref === "function") {
-        ref(node)
-      }
-      else if(ref && typeof ref === "object") {
-        (ref as {current: HTMLDialogElement | null}).current = node
-      }
-  }, [dialogRef, ref])
+const dialogRef = useRef<HTMLDialogElement>(null);
+const mergedRefs = useMergedRefs(ref, dialogRef)
 
   const handleOpen = () => {
     console.log("Opening dialog");
@@ -41,7 +30,7 @@ const Modal = ({ content, ref, ...props}: DialogProps) => {
         onClick={handleOpen}
         />
         <dialog
-        ref = {setRefs}
+        ref = {mergedRefs}
         onCancel={handleClose}
         onClose = {handleClose}
         className = "w-full max-w-md p-6 border border-gray-200 rounded-lg"

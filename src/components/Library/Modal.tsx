@@ -1,26 +1,42 @@
-import {useRef} from "react";
+import {useEffect, useRef, useState} from "react";
+import {AnimatePresence, motion} from 'motion/react';
+import {type HTMLMotionProps } from 'motion/react'
 import Button from "@components/Button";
 import { buttonVariant, buttonCopy } from "@types";
 import useMergedRefs from "src/lib/utils/mergedRefs";
 
-interface DialogProps extends React.HTMLAttributes<HTMLDialogElement> {
+interface DialogProps extends HTMLMotionProps<"dialog"> {
     content: string;
     ref?: React.Ref<HTMLDialogElement>
+    isOpen?: boolean
 }
 
-const Modal = ({ content, ref, ...props}: DialogProps) => {
+const Modal = ({ content, ref, isOpen: externalOpen, ...props}: DialogProps) => {
 
 const dialogRef = useRef<HTMLDialogElement>(null);
-const mergedRefs = useMergedRefs(ref, dialogRef)
+const mergedRefs = useMergedRefs(ref, dialogRef);
+const [dialogOpen, setIsDialogOpen] = useState(false);
 
-  const handleOpen = () => {
-    console.log("Opening dialog");
-    dialogRef.current?.showModal()
-  }
+const isOpen = externalOpen ?? dialogOpen;
 
-  const handleClose = () => {
-    dialogRef.current?.close()
+useEffect(() => {
+  const dialog = dialogRef.current;
+  if(!dialog || !isOpen) return;
+
+  if(!dialog.open) {
+    dialog.showModal()
   }
+}, [isOpen])
+
+
+
+const handleOpen = () => setIsDialogOpen(true)
+const handleClose = (e?: React.SyntheticEvent) => {
+    if(e) {
+      e.preventDefault()
+    }
+    setIsDialogOpen(false)
+}
 
   return (
     <div className = "relative">
@@ -29,29 +45,40 @@ const mergedRefs = useMergedRefs(ref, dialogRef)
         buttonCopy={buttonCopy.OPEN_DIALOG}
         onClick={handleOpen}
         />
-        <dialog
-        ref = {mergedRefs}
-        onCancel={handleClose}
-        onClose = {handleClose}
-        className = "w-full max-w-md p-6 border border-gray-200 rounded-lg"
-        {...props}
-        >
-            <div>
-                <h3 className = "text-lg font-medium mb-4">Confirm Changes</h3>
-                <p className = "text-gray-700 mb-6">{content}</p>
-                <div className = "flex flex-row justify-end gap-2">
-                    <Button
-                    variant = {buttonVariant.Secondary}
-                    buttonCopy = {buttonCopy.CANCEL}
-                    onClick={handleClose}
-                    />
-                    <Button
-                    variant = {buttonVariant.Primary}
-                    buttonCopy = {buttonCopy.CONFIRM}
-                    />
-                </div>
-            </div>
-        </dialog>
+        <AnimatePresence>
+          {isOpen === true && (
+            <motion.dialog
+              {...props}
+              ref = {mergedRefs}
+              onCancel={handleClose}
+              onClose={handleClose}
+              initial = {{opacity: 0}}
+              animate = {{opacity: 1}}
+              exit = {{opacity: 0}}
+              transition = {{ease: 'easeOut', duration: 0.2}}
+              onAnimationComplete = {(definition) => {
+                if(definition === "exit" && dialogRef.current.open) {dialogRef.current.close()}
+              }}
+              className = "w-full max-w-md p-6 border border-gray-200 rounded-lg"
+              >
+                  <div>
+                      <h3 className = "text-lg font-medium mb-4">Confirm Changes</h3>
+                      <p className = "text-gray-700 mb-6">{content}</p>
+                      <div className = "flex flex-row justify-end gap-2">
+                          <Button
+                          variant = {buttonVariant.Secondary}
+                          buttonCopy = {buttonCopy.CANCEL}
+                          onClick={handleClose}
+                          />
+                          <Button
+                          variant = {buttonVariant.Primary}
+                          buttonCopy = {buttonCopy.CONFIRM}
+                          />
+                      </div>
+                  </div>
+            </motion.dialog>
+          )}
+        </AnimatePresence>
     </div>
   )
 }

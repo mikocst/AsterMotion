@@ -19,6 +19,30 @@ const [dialogOpen, setIsDialogOpen] = useState(false);
 
 const isOpen = externalOpen ?? dialogOpen;
 
+const handleOpen = () => setIsDialogOpen(true)
+const handleClose = (e?: React.SyntheticEvent) => {
+    if(e) {
+      e.preventDefault()
+    }
+    setIsDialogOpen(false)
+}
+
+const handleClick = (e?: React.MouseEvent<HTMLDialogElement>) => {
+  const dialog = dialogRef.current;
+  if (!dialog) return;
+
+  const rect = dialog.getBoundingClientRect();
+  
+  const outsideClick = (
+    e.clientX < rect.left || e.clientX > rect.right ||
+    e.clientY < rect.top || e.clientY > rect.bottom
+  )
+
+  if(outsideClick) {
+    handleClose();
+  }
+}
+
 useEffect(() => {
   const dialog = dialogRef.current;
   if(!dialog || !isOpen) return;
@@ -28,15 +52,18 @@ useEffect(() => {
   }
 }, [isOpen])
 
+useEffect(() => {
+  if(isOpen) {
+    document.body.style.overflow = 'hidden'
+  }
+  else {
+    document.body.style.overflow = 'unset'
+  }
 
-
-const handleOpen = () => setIsDialogOpen(true)
-const handleClose = (e?: React.SyntheticEvent) => {
-    if(e) {
-      e.preventDefault()
-    }
-    setIsDialogOpen(false)
-}
+  return () => {
+    document.body.style.overflow = 'unset'
+  }
+}, [isOpen])
 
   return (
     <div className = "relative">
@@ -52,12 +79,13 @@ const handleClose = (e?: React.SyntheticEvent) => {
               ref = {mergedRefs}
               onCancel={handleClose}
               onClose={handleClose}
+              onClick = {handleClick}
               initial = {{opacity: 0}}
               animate = {{opacity: 1}}
               exit = {{opacity: 0}}
               transition = {{ease: 'easeOut', duration: 0.2}}
               onAnimationComplete = {(definition) => {
-                if(definition === "exit" && dialogRef.current.open) {dialogRef.current.close()}
+                if(definition === "exit" && dialogRef.current?.open) {dialogRef.current.close()}
               }}
               className = "w-full max-w-md p-6 border border-gray-200 rounded-lg"
               >

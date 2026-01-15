@@ -17,10 +17,10 @@ interface RadioGroupProps {
 
 const RadioGroupContext = React.createContext<RadioGroupContextValue | null>(null)
 
-const RadioGroup = ({value, name: propName, onValueChange}: RadioGroupContextValue, {children}: RadioGroupProps) => {
+const RadioGroup = ({value, children, name:propName, onValueChange, defaultValue}: RadioGroupProps) => {
   const generatedId = useId();
   const name = propName ?? generatedId
-  const [selectedValue, setSelectedValue] = useState<string | null>(null);
+  const [selectedValue, setSelectedValue] = useState<string | undefined>(value ?? defaultValue);
 
   const handleValueChange = (newValue:string) => {
     setSelectedValue(newValue);
@@ -34,6 +34,14 @@ const RadioGroup = ({value, name: propName, onValueChange}: RadioGroupContextVal
         </div>
     </RadioGroupContext.Provider>
   )
+}
+
+export const useRadioGroupContext = () => {
+    const context = React.useContext(RadioGroupContext);
+    if (!context) {
+        throw new Error("RadioItem must be used within a RadioGroup")
+    }
+    return context
 }
 
 export default RadioGroup

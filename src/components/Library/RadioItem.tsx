@@ -3,9 +3,9 @@ import { useRadioGroupContext } from './RadioGroup'
 
 interface RadioItemProps extends React.InputHTMLAttributes<HTMLInputElement> {
     value: string;
-    id: string;
-    children: React.ReactNode;
-    ref: React.Ref<HTMLInputElement>
+    id?: string;
+    children?: React.ReactNode;
+    ref?: React.Ref<HTMLInputElement>
 }
 
 const RadioItem = ({id, value, children, ref, ...props}: RadioItemProps) => {

@@ -8,7 +8,7 @@ interface RadioGroupContextValue {
 }
 
 interface RadioGroupProps {
-    children: React.ReactNode,
+    children?: React.ReactNode,
     value?: string,
     defaultValue?: string,
     onValueChange?: (value:string) => void

@@ -31,7 +31,7 @@ export function AsterProvider({ children }: AsterProviderProps) {
         isSearching,
         setIsSearching,
         isDarkMode,
-        setIsDarkMode }}
+        setIsDarkMode, }}
     >
       {children}
     </AsterContext.Provider>

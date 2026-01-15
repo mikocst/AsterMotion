@@ -4,15 +4,19 @@ interface RadioItemProps extends React.InputHTMLAttributes<HTMLInputElement> {
     id: string;
 }
 
-const RadioItem = ({id,...props}: RadioItemProps) => {
+const RadioItem = ({id, ...props}: RadioItemProps) => {
   return (
-    <input
-    type = "radio"
-    value = {props.value}
-    id = {id}
-    >
-        {props.value}
-    </input>
+    <div className = "flex flex-row gap-2 cursor-pointer">
+        <input
+        type = "radio"
+        value = {props.value}
+        id = {id}
+        />
+        <label
+        >
+            {props.value}
+        </label>
+    </div>
   )
 }
 

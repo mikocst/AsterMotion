@@ -38,7 +38,7 @@ const Accordion = () => {
             <div 
              key = {index}
              onClick = {() => toggleAccordionItem(index)}
-             className = "flex flex-col justify-between p-2 cursor-pointer"
+             className = "flex flex-col justify-between p-2 cursor-pointer border-b border-gray-200"
              >
                 <div className = "flex flex-row justify-between">
                     <p className = "text-gray-700 font-medium">{item.title}</p>
@@ -51,10 +51,10 @@ const Accordion = () => {
                 <AnimatePresence>
                     {activeIndex === index && (
                     <MotionDiv
-                     initial = {{height: 0, opacity: 0}}
-                     animate = {{height: 'auto', opacity: 1}}
+                     initial = {{height: 0}}
+                     animate = {{height: 'auto'}}
                      exit={{ height: 0, opacity: 0 }}
-                     transition={{ duration: 0.3, ease: "easeInOut" }}
+                     transition={{ duration: 0.3, ease: "easeOut" }}
                      >
                         <p className = "text-gray-600">
                             {item.content}

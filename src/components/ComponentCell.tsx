@@ -11,7 +11,7 @@ interface ComponentCellProps {
 const dialogContent = `Are you sure you want to make these changes? This action cannot be undone.`;
 
 const ComponentCell = () => {
-  const [plan, setPlan] = useState("pro")
+  const [plan, setPlan] = useState("pro");
 
   return (
     <div className = "flex flex-col gap-2 p-3 border border-gray-200 rounded-lg">
@@ -20,16 +20,17 @@ const ComponentCell = () => {
            <RadioGroup
            name = "Billing Plans"
            value="plan"
+           onHoverChange={setPlan}
            onValueChange={setPlan}
            >
-            <div>
+            <div className = "flex flex-col gap-4">
               <RadioItem value ="free">
                 <span>No Monthly Payment</span>
               </RadioItem>
-              <RadioItem value ="free">
+              <RadioItem value ="standard">
                 <span>$15/ Month</span>
               </RadioItem>
-              <RadioItem value ="free">
+              <RadioItem value ="pro">
                 <span>$30 / Month</span>
               </RadioItem>
             </div>

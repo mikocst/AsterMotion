@@ -48,7 +48,8 @@ const RadioItem = ({id, value, yValue, children, ref, ...props}: RadioItemProps)
   return (
     <div
     onMouseEnter={() => handleMouseEnter()}
-    className = "flex flex-row gap-2 items-center relative"
+    onFocus={handleMouseEnter}
+    className = "flex flex-row gap-2 p-2 rounded-md items-center relative has-[:focus-visible]:ring-2"
     ref = {containerRef}
     >
         <input

@@ -38,7 +38,6 @@ const RadioGroup = ({value, hover, children, name:propName, onValueChange, onHov
   const handleHoverChange = (newValue:string, y:number) => {
     setHoveredValue(newValue)
     onHoverChange?.(newValue, y)
-    console.log(prevY, ':prevY and', y, ':y.')
     if(prevY > y) {
         setMovement('up')
     }

@@ -1,6 +1,7 @@
 import React, { useId, useRef } from 'react'
 import { useRadioGroupContext } from './RadioGroup'
 import { AnimatePresence, easeOut, motion } from 'motion/react';
+import { cn } from 'src/lib/utils';
 
 interface RadioItemProps extends React.InputHTMLAttributes<HTMLInputElement> {
     value: string;
@@ -61,9 +62,17 @@ const RadioItem = ({id, value, yValue, children, ref, ...props}: RadioItemProps)
         className = "absolute inset-0 opacity-0 cursor-pointer"
         />
         <div className = "w-4 h-4 border border-gray-300 rounded-lg cursor-pointer flex items-center justify-center overflow-hidden">
-            {isSelected && (
-                <div className = "w-2 h-2 bg-blue-500 rounded-lg"></div>
+            <AnimatePresence>
+                {isSelected && (
+                <motion.div 
+                initial = {{opacity: 0}}
+                animate = {{opacity: 1}}
+                exit = {{opacity: 0}}
+                transition = {{ease: easeOut, duration:.2}}
+                className = "w-2 h-2 bg-blue-500 rounded-lg relative z-20">
+                </motion.div>
             )}
+            </AnimatePresence>
             <AnimatePresence
             custom={context.direction}
             >
@@ -74,11 +83,13 @@ const RadioItem = ({id, value, yValue, children, ref, ...props}: RadioItemProps)
                 initial = "initial" 
                 animate = "animate"
                 exit = "exit"
-                className = "w-2 h-2 bg-blue-300 rounded-lg absolute"></motion.div>
+                className = "w-2 h-2 bg-gray-300 rounded-lg absolute z-10"></motion.div>
                 )}
             </AnimatePresence>
         </div>
-        <label htmlFor = {radioItemId}>
+        <label htmlFor = {radioItemId}
+        className = {cn("font-regular",isSelected ? " text-black" : "text-gray-500")}
+        >
             {children || value}
         </label>
     </div>

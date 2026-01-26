@@ -1,6 +1,6 @@
 import { ChevronLeft } from "lucide-react";
 import {AnimatePresence, motion} from 'motion/react';
-import { useState, useId } from "react";
+import { useState, useId, useRef } from "react";
 
 interface AccordionProps {
     items: Array<{
@@ -15,12 +15,28 @@ const MotionChevronLeft = motion.create(ChevronLeft);
 const Accordion = ({ items}: AccordionProps) => {
   const generatedId = useId();
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const buttonRefs = useRef<HTMLButtonElement[]>([])
 
   const toggleAccordionItem = (index:number) => {
     if(activeIndex === index) {
         setActiveIndex(null);
     } else {
         setActiveIndex(index);
+    }
+}
+
+const handleKeyDown = (e: React.KeyboardEvent, index:number) => {
+    let nextIndex = 0;
+    if(e.key === 'ArrowUp'){
+        e.preventDefault();
+        nextIndex = (index - 1 + items.length) % items.length
+        buttonRefs.current[nextIndex].focus();
+    }
+
+    else if (e.key === 'ArrowDown'){
+         e.preventDefault();
+         nextIndex = (index + 1) % items.length
+         buttonRefs.current[nextIndex].focus();
     }
 }
 
@@ -36,9 +52,11 @@ const Accordion = ({ items}: AccordionProps) => {
              className = "flex flex-col justify-between py-2 border-b border-gray-200"
              >
                 <button 
+                ref={(el) => { if (el) buttonRefs.current[index] = el; }}
                 aria-controls = {contentId}
                 id = {triggerId}
-                aria-expanded = {activeIndex === index ? true : false   }
+                aria-expanded = {activeIndex === index ? true : false}
+                onKeyDown={(e) => handleKeyDown(e, index)}
                 className = "flex flex-row justify-between py-1 focus-visible:rounded-md cursor-pointer"
                 onClick = {() => toggleAccordionItem(index)}
                 >

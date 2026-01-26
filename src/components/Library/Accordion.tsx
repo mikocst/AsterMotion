@@ -38,23 +38,25 @@ const Accordion = () => {
             <div 
              key = {index}
              onClick = {() => toggleAccordionItem(index)}
-             className = "flex flex-col justify-between p-2 cursor-pointer border-b border-gray-200"
+             className = "flex flex-col justify-between py-2 cursor-pointer border-b border-gray-200"
              >
-                <div className = "flex flex-row justify-between">
+                <button className = "flex flex-row justify-between py-1 focus-visible:rounded-md">
                     <p className = "text-gray-700 font-medium">{item.title}</p>
                     <MotionChevronLeft
                         animate = {{rotate: activeIndex === index ? -90 : 0}}
+                        transition = {{ease: 'easeOut', duration: 0.2}}
                         className="text-gray-400 w-[20px] h-[20px]"
                     >
                     </MotionChevronLeft>
-                </div>
+                </button>
                 <AnimatePresence>
                     {activeIndex === index && (
                     <MotionDiv
                      initial = {{height: 0}}
                      animate = {{height: 'auto'}}
-                     exit={{ height: 0, opacity: 0 }}
-                     transition={{ duration: 0.3, ease: "easeOut" }}
+                     exit={{ height: 0 }}
+                     transition={{ duration: 0.2, ease: "easeOut" }}
+                     className = "overflow-hidden"
                      >
                         <p className = "text-gray-600">
                             {item.content}

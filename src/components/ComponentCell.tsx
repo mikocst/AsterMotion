@@ -17,24 +17,7 @@ const ComponentCell = () => {
     <div className = "flex flex-col gap-2 p-3 border border-gray-200 rounded-lg">
         <h3 className = "text-lg">Component Cell</h3>
         <div className="p-3 border border-gray-100 rounded-md">
-           <RadioGroup
-           name = "Billing Plans"
-           value="plan"
-           onHoverChange={setPlan}
-           onValueChange={setPlan}
-           >
-            <div className = "flex flex-col gap-4">
-              <RadioItem value ="free">
-                <span>No Monthly Payment</span>
-              </RadioItem>
-              <RadioItem value ="standard">
-                <span>$15/ Month</span>
-              </RadioItem>
-              <RadioItem value ="pro">
-                <span>$30 / Month</span>
-              </RadioItem>
-            </div>
-           </RadioGroup>
+          <Accordion/>
         </div>
       </div>
   )

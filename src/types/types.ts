@@ -9,7 +9,8 @@ export enum buttonCopy {
 
 export enum buttonVariant {
     Primary = 1,
-    Secondary = 2
+    Secondary = 2,
+    Icon = 3
 }
 
 export enum componentShowcaseCopy {

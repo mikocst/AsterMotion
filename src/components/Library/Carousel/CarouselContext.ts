@@ -7,4 +7,4 @@ export interface CarouselContextProps {
     itemWidth: number;
 }
 
-export const CarouselContext = createContext(null)
+export const CarouselContext = createContext<CarouselContextProps | null>(null)

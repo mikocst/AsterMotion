@@ -30,7 +30,7 @@ const Carousel = ({children}: CarouselProps) => {
         <div className = "flex justify-center items-center h-full relative">
         <Button
         variant = {buttonVariant.Icon}
-        onClick={() => handleLeftArrow()}
+        onClick={handleLeftArrow}
         >
             <ArrowLeft className = "h-4 w-4"></ArrowLeft>
         </Button>
@@ -39,7 +39,7 @@ const Carousel = ({children}: CarouselProps) => {
         </CarouselContent>
         <Button
         variant = {buttonVariant.Icon}
-        onClick={() => handleRightArrow()}
+        onClick={handleRightArrow}
         >
             <ArrowRight className = "h-4 w-4"></ArrowRight>
         </Button>

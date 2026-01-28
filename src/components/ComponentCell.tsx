@@ -2,7 +2,7 @@ import { useState } from "react";
 import Accordion from "./Library/Accordion";
 import RadioGroup from "./Library/RadioGroup";
 import RadioItem from "./Library/RadioItem";
-import Carousel from "./Library/Carousel";
+import Carousel from "./Library/Carousel/Carousel";
 
 interface ComponentCellProps {
       componentName: string;

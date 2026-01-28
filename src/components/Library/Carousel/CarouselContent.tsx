@@ -2,12 +2,17 @@ import React from 'react'
 
 interface CarouselContentProps {
     children: React.ReactNode
+    ref: React.RefObject<HTMLDivElement | null>
 }
 
-const CarouselContent = ({children}: CarouselContentProps) => {
+const CarouselContent = ({children, ref}: CarouselContentProps) => {
   return (
-    <div className = "w-[480px] h-full flex flex-row overflow-hidden">
-        {children}
+    <div 
+    ref = {ref}
+    className = "h-full w-full overflow-hidden">
+        <div className = "flex flex-row">
+            {children}
+        </div>
     </div>
   )
 }

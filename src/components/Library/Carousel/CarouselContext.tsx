@@ -1,8 +1,10 @@
 import { createContext } from "react";
 
-interface CarouselContextProps {
-    items: string[];
+export interface CarouselContextProps {
+    totalItems: number;
     activeIndex: number;
+    setActiveIndex: (index:number) => void
+    itemWidth: number;
 }
 
-export const CarouselContext = createContext('CarouselContext')
+export const CarouselContext = createContext(null)

@@ -2,7 +2,7 @@ import Button from "@components/Button";
 import { buttonVariant } from "@types";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import CarouselContent from "./CarouselContent";
-import { useState, useRef, useLayoutEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import React from "react";
 import { CarouselContext } from "./CarouselContext";
 
@@ -12,6 +12,7 @@ interface CarouselProps {
 
 const Carousel = ({children}: CarouselProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [itemIds, setItemIds] = useState<string[]>([]);
   const [itemWidth, setItemWidth] = useState(0)
   const widthRef = useRef<HTMLDivElement>(null);
 
@@ -23,9 +24,9 @@ const Carousel = ({children}: CarouselProps) => {
         setActiveIndex(Math.min(activeIndex + 1, totalItems - 1)) 
   }
 
-  const totalItems = React.Children.count(children);
+  const totalItems = itemIds.length
 
-  useLayoutEffect(() => {
+  useEffect(() => {
         const observer = new ResizeObserver((entries) => {      
         const newWidth = entries[0].contentRect.width;
         if (newWidth > 0 && newWidth < 5000) {
@@ -37,10 +38,22 @@ const Carousel = ({children}: CarouselProps) => {
         return () => observer.disconnect()
   },[])
 
-  console.log(itemWidth)
+  const registerItem = useCallback((newItem: string) => {
+    setItemIds(prev => {
+        if(!prev.includes(newItem)) {
+            return [...prev, newItem]   
+        }
+
+        else if (prev.includes(newItem)) {
+            return prev
+        }
+    })
+  },[])
+
+  console.log(itemIds)
 
   return (
-    <CarouselContext value = {{activeIndex, setActiveIndex, totalItems, itemWidth}}>
+    <CarouselContext value = {{activeIndex, setActiveIndex, itemWidth, registerItem, itemIds}}>
         <div className = "grid grid-cols-[auto_1fr_auto] gap-2 justify-center items-center w-full h-full relative overflow-hidden"
         >
         <Button

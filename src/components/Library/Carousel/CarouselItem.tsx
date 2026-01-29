@@ -24,8 +24,8 @@ const CarouselItem = ({item, id}: CarouselItemProps) => {
   return (
     <motion.div 
     id = {itemId}
-    animate = {myIndex === context.activeIndex ? {filter: 'blur(0px)'} : {filter: 'blur(10px)'}}
-    transition = {{ease: 'easeOut', duration: 0.2}}
+    animate = {myIndex === context.activeIndex ? {scale: 1 ,filter: 'blur(0px)'} : {scale: 0.95,filter: 'blur(10px)'}}
+    transition = {{ease: 'easeInOut', duration: 0.2}}
     style={{width: context.itemWidth, minWidth: context.itemWidth}}
     className = "flex flex-shrink-0 h-full justify-center items-center rounded-md border border-gray-300 p-24">
             <p>{item}</p>

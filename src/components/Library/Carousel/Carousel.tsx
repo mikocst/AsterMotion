@@ -50,8 +50,6 @@ const Carousel = ({children}: CarouselProps) => {
     })
   },[])
 
-  console.log(itemIds)
-
   return (
     <CarouselContext value = {{activeIndex, setActiveIndex, itemWidth, registerItem, itemIds}}>
         <div className = "grid grid-cols-[auto_1fr_auto] gap-2 justify-center items-center w-full h-full relative overflow-hidden"
@@ -60,7 +58,7 @@ const Carousel = ({children}: CarouselProps) => {
         variant = {buttonVariant.Icon}
         onClick={handleLeftArrow}
         >
-            <ArrowLeft className = "h-4 w-4"></ArrowLeft>
+            <ArrowLeft className = "h-4 w-4 text-gray-600"></ArrowLeft>
         </Button>
              <div ref = {widthRef} className = " overflow-hidden h-full">
             <CarouselContent
@@ -72,7 +70,7 @@ const Carousel = ({children}: CarouselProps) => {
         variant = {buttonVariant.Icon}
         onClick={handleRightArrow}
         >
-            <ArrowRight className = "h-4 w-4"></ArrowRight>
+            <ArrowRight className = "h-4 w-4 text-gray-600"></ArrowRight>
         </Button>
     </div>
     </CarouselContext>

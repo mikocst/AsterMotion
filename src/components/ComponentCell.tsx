@@ -3,6 +3,7 @@ import Accordion from "./Library/Accordion";
 import RadioGroup from "./Library/RadioGroup";
 import RadioItem from "./Library/RadioItem";
 import Carousel from "./Library/Carousel/Carousel";
+import CarouselItem from "./Library/Carousel/CarouselItem";
 
 interface ComponentCellProps {
       componentName: string;
@@ -32,7 +33,17 @@ const ComponentCell = () => {
     <div className = "flex flex-col gap-2 p-3 border border-gray-200 rounded-lg">
         <h3 className = "text-lg">Component Cell</h3>
         <div className="p-3 border border-gray-100 rounded-md">
-          <Carousel/>
+          <Carousel>
+            <CarouselItem
+            item = '1'
+            />
+            <CarouselItem
+            item = '2'
+            />
+            <CarouselItem
+            item = '3'
+            />
+          </Carousel>
         </div>
       </div>
   )

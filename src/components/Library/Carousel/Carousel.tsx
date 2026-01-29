@@ -27,14 +27,17 @@ const Carousel = ({children}: CarouselProps) => {
 
   useEffect(() => {
     if (widthRef.current) {
-        const resizeObserver = new ResizeObserver((entries) => {
+        const observer = new ResizeObserver((entries) => {
+            setItemWidth(entries[0].contentRect.width)
             
         })
+        observer.observe(widthRef.current)
+        return () => observer.disconnect()
     }
-  })
+  },[setItemWidth])
 
   return (
-    <CarouselContext value = {{activeIndex, setActiveIndex, totalItems, itemWidth: itemWidth}}>
+    <CarouselContext value = {{activeIndex, setActiveIndex, totalItems, itemWidth}}>
         <div className = "flex justify-center items-center h-full relative">
         <Button
         variant = {buttonVariant.Icon}

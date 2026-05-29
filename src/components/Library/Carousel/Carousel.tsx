@@ -38,15 +38,22 @@ const Carousel = ({children}: CarouselProps) => {
     })
   },[]);
 
+  const deregisterItem = useCallback((chosenItem: string) => {
+        setItemIds(prev => {
+            return prev.filter((item) => item !== chosenItem)
+        })
+  }, [])
+
   const contextValues = useMemo(() => {
         return {
             activeIndex,
             setActiveIndex,
             registerItem,
+            deregisterItem,
             itemWidth,
             itemIds,
         }
-  }, [activeIndex, setActiveIndex, registerItem, itemWidth, itemIds,])
+  }, [activeIndex, setActiveIndex, registerItem, deregisterItem, itemWidth, itemIds,])
 
   useEffect(() => {
         const observer = new ResizeObserver((entries) => {      

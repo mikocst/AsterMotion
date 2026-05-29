@@ -13,12 +13,13 @@ const CarouselItem = ({item, id}: CarouselItemProps) => {
   if(!context) return null;
 
   const generatedId = useId();
-  const itemId = generatedId || id;
+  const itemId = id || generatedId
 
   const myIndex = context.itemIds.indexOf(itemId)
 
   useEffect(() => {
     context.registerItem(itemId)
+    return(() => context.deregisterItem(itemId))
   }, [])
 
   return (

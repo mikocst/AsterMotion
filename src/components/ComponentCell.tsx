@@ -38,7 +38,9 @@ const ComponentCell = () => {
           content="test"
           color="blue"
           variant="pill"
-          />
+          >
+            <p>Hi, test</p>
+          </Badge>  
         </div>
       </div>
   )

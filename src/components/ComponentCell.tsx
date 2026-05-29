@@ -36,6 +36,8 @@ const ComponentCell = () => {
         <div className="p-3 border border-gray-100 rounded-md">
           <Badge
           content="test"
+          color="blue"
+          variant="pill"
           />
         </div>
       </div>

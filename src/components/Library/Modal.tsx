@@ -32,6 +32,8 @@ const handleClick = (e?: React.MouseEvent<HTMLDialogElement>) => {
   if (!dialog) return;
 
   const rect = dialog.getBoundingClientRect();
+
+  if(!e) return
   
   const outsideClick = (
     e.clientX < rect.left || e.clientX > rect.right ||
@@ -90,8 +92,8 @@ useEffect(() => {
               className = "w-full max-w-md p-6 border border-gray-200 rounded-lg"
               >
                   <div>
-                      <h3 className = "text-lg font-medium mb-4">Confirm Changes</h3>
-                      <p className = "text-gray-700 mb-6">{content}</p>
+                      <h3 className = "mb-4 text-lg font-medium">Confirm Changes</h3>
+                      <p className = "mb-6 text-gray-700">{content}</p>
                       <div className = "flex flex-row justify-end gap-2">
                           <Button
                           variant = {buttonVariant.Secondary}

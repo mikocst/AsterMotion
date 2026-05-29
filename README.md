@@ -12,21 +12,24 @@ the understanding is valuable and it can only take you 80% of the way there. I f
 super powers comes responsibility. 
 
 - For v1 of this project, I'm creating a base UI library consisting of the Figma design file and the following components:
-    - Accordion
+    - [x] Accordion
     - Badges
     - Breadcrumb
-    - Cards
-    - Carousel
-    - Code Block
-    - File Uploader
-    - Floating Action Button
-    - Form
-    - Input Field
-    - Loading Bar
+    - [x] Cards
+    - [x] Carousel
+    - [x] Modal
     - Pagination
-    - Radio Input
-    - Slider
-    - Tabs
-    - Switch
+    - [x] Radio Input
+    - [x] Tabs
+    - [x] Switch
     - Toast
-    - Tool Tip
+
+    v1.2 make all existing v1.0 packageable and test
+
+    v1.3 to do -> expanding library and polishing any v1 items after testing
+    - Form
+    - Input
+    - Slider 
+    - Code block ? 
+    - Loading Bar
+

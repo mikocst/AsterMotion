@@ -5,6 +5,7 @@ import RadioItem from "./Library/RadioItem";
 import Carousel from "./Library/Carousel/Carousel";
 import CarouselItem from "./Library/Carousel/CarouselItem";
 import Badge from "./Library/Badge";
+import Breadcrumb from "./Library/Breadcrumb";
 
 interface ComponentCellProps {
       componentName: string;
@@ -34,13 +35,7 @@ const ComponentCell = () => {
     <div className = "flex flex-col gap-2 p-3 border border-gray-200 rounded-lg">
         <h3 className = "text-lg">Component Cell</h3>
         <div className="p-3 border border-gray-100 rounded-md">
-          <Badge
-          content="test"
-          color="blue"
-          variant="pill"
-          >
-            <p>Hi, test</p>
-          </Badge>  
+          <Breadcrumb></Breadcrumb>
         </div>
       </div>
   )

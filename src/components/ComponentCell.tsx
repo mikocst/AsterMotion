@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Accordion from "./Library/Accordion";
-import RadioGroup from "./Library/RadioGroup";
-import RadioItem from "./Library/RadioItem";
+import RadioGroup from "./Library/RadioGroup/RadioGroup";
+import RadioItem from "./Library/RadioGroup/RadioItem";
 import Carousel from "./Library/Carousel/Carousel";
 import CarouselItem from "./Library/Carousel/CarouselItem";
 import Badge from "./Library/Badge";
@@ -14,6 +14,7 @@ interface ComponentCellProps {
 
 const dialogContent = `Are you sure you want to make these changes? This action cannot be undone.`;
 
+//for accordions
 const accordionItems = [{
   name: 'Product',
   content: 'Product goes here.'
@@ -28,6 +29,8 @@ const accordionItems = [{
 }
 ];
 
+
+//for the breadcrumb also needs maxItems and renderItem if needed
 const breadcrumbItems = [
   {
     id: 'id1',
@@ -58,10 +61,22 @@ const ComponentCell = () => {
     <div className = "flex flex-col gap-2 p-3 border border-gray-200 rounded-lg">
         <h3 className = "text-lg">Component Cell</h3>
         <div className="p-3 border border-gray-100 rounded-md">
-          <Breadcrumb
-          items={breadcrumbItems}
-          maxItems={3}
-          ></Breadcrumb>
+          <RadioGroup
+          onValueChange = {setPlan}
+          >
+            <RadioItem
+            value="hobby"
+            index = {1}
+            />
+            <RadioItem
+            value="pro"
+            index={2}
+            />
+            <RadioItem
+            value = "enterprise"
+            index = {3}
+            />
+          </RadioGroup>
         </div>
       </div>
   )

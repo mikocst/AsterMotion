@@ -5,7 +5,7 @@ import RadioItem from "./Library/RadioItem";
 import Carousel from "./Library/Carousel/Carousel";
 import CarouselItem from "./Library/Carousel/CarouselItem";
 import Badge from "./Library/Badge";
-import Breadcrumb from "./Library/Breadcrumb";
+import Breadcrumb from "./Library/Breadcrumb/Breadcrumb";
 
 interface ComponentCellProps {
       componentName: string;
@@ -26,6 +26,29 @@ const accordionItems = [{
   name: 'Interactions',
   content: 'Interaction goes here.'
 }
+];
+
+const breadcrumbItems = [
+  {
+    id: 'id1',
+    title: 'test 1',
+    link: 'https://github.com/'
+  },
+  {
+    id: 'id2',
+    title: 'test 2',
+    link: 'https://github.com/'
+  },
+  {
+    id: 'id3',
+    title: 'test 3',
+    link: 'https://github.com/'
+  },
+  {
+    id: 'id4',
+    title: 'test 4',
+    link: 'https://github.com/'
+  },
 ]
 
 const ComponentCell = () => {
@@ -35,7 +58,10 @@ const ComponentCell = () => {
     <div className = "flex flex-col gap-2 p-3 border border-gray-200 rounded-lg">
         <h3 className = "text-lg">Component Cell</h3>
         <div className="p-3 border border-gray-100 rounded-md">
-          <Breadcrumb></Breadcrumb>
+          <Breadcrumb
+          items={breadcrumbItems}
+          maxItems={3}
+          ></Breadcrumb>
         </div>
       </div>
   )

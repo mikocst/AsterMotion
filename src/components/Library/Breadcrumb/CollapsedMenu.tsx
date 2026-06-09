@@ -3,9 +3,10 @@ import type { BreadcrumbItem } from './types'
 
 interface CollapseMenuProps {
     collapsedList:BreadcrumbItem[]
+    renderItem?: (item:BreadcrumbItem) => React.ReactNode
 }
 
-const CollapsedMenu = ({collapsedList}:CollapseMenuProps) => {
+const CollapsedMenu = ({collapsedList, renderItem}:CollapseMenuProps) => {
   return (
     <div className = "flex flex-col gap-1">
         {collapsedList.map((item) => (
@@ -13,9 +14,7 @@ const CollapsedMenu = ({collapsedList}:CollapseMenuProps) => {
             key = {item.id}
             className = "p-1 hover:bg-gray-100"
             >
-                <a href = {item.link}>
-                    {item.title}
-                </a>     
+                {renderItem ? renderItem(item) : <a href = {item.link}>{item.title}</a>} 
             </div>
         ))}
     </div>

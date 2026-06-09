@@ -1,12 +1,8 @@
 import React from 'react'
 import { ChevronRight, Ellipsis } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
-
-export type BreadcrumbItem = {
-    id: string,
-    title: string,
-    link: string
-}
+import CollapsedMenu from './CollapsedMenu'
+import type { BreadcrumbItem } from './types'
 
 interface BreadCrumbProps {
     items: BreadcrumbItem[]
@@ -34,7 +30,7 @@ const Breadcrumb = ({items, maxItems = 5, separator, renderItem} : BreadCrumbPro
     }
 
     const handleButtonClick = () => {
-      setIsExpanded(isExpanded)
+      setIsExpanded(true)
     }
 
 
@@ -67,7 +63,10 @@ const Breadcrumb = ({items, maxItems = 5, separator, renderItem} : BreadCrumbPro
               </li>
             )}
             <li className = "flex flex-row items-center gap-1 text-gray-500 hover:text-gray-700">
-              <button aria-label = "Show missing paths" className = "p-1 rounded-md hover:bg-gray-200/70">
+              <button
+               ref = {elipsesRef}
+               aria-label = "Show missing paths"
+               className = "p-1 rounded-md hover:bg-gray-200/70">
                 <Ellipsis className = "text-gray-500" size = {'16px'}/>
               </button>
               {separator ? separator : <ChevronRight size = {'16px'} className = "text-gray-400"/>}

@@ -1,4 +1,4 @@
-import React, { useId, useState } from "react";
+import React, { useCallback, useId, useState, useMemo } from "react";
 
 interface RadioGroupContextValue {
   value?: string;
@@ -6,6 +6,8 @@ interface RadioGroupContextValue {
   direction: 'up' | 'down' | null;
   onValueChange: (value: string) => void;
   onHoverChange: (index: number | null) => void;
+  handleRegister: (id:string) => () => void;
+  registeredIds: string[]
   name: string;
 }
 
@@ -17,7 +19,7 @@ interface RadioGroupProps {
   name?: string;
 }
 
-const RadioGroupContext = React.createContext<RadioGroupContextValue | null>(null);
+const RadioGroupContext = React.createContext<RadioGroupContextValue | null>(null)
 
 const RadioGroup = ({ value, children, name: propName, onValueChange, defaultValue }: RadioGroupProps) => {
   const generatedId = useId();
@@ -26,6 +28,7 @@ const RadioGroup = ({ value, children, name: propName, onValueChange, defaultVal
   const [selectedValue, setSelectedValue] = useState<string | undefined>(value ?? defaultValue);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [movement, setMovement] = useState<'up' | 'down' | null>(null);
+  const [registeredIds, setRegisteredIds] = useState<string[]>([]);
 
   const handleValueChange = (newValue: string) => {
     setSelectedValue(newValue);
@@ -43,15 +46,35 @@ const RadioGroup = ({ value, children, name: propName, onValueChange, defaultVal
     setHoveredIndex(nextIndex);
   };
 
+  const handleRegister = useCallback((id: string) => {
+        setRegisteredIds(prev => {
+            if(!prev.includes(id)) return ([...prev,id])
+
+            else {
+                return(prev)
+            }
+        })
+
+        return () => setRegisteredIds(prev => prev.filter(item => item !== id))
+  }, []);
+
+  const memoizedValues = useMemo(() => {
+      return(
+        {
+            value: selectedValue,
+            onValueChange: handleValueChange,
+            hoveredIndex,
+            handleRegister,
+            registeredIds,
+            direction: movement,
+            onHoverChange: handleHoverChange,
+            name
+        }
+      )
+  },[selectedValue, onValueChange, hoveredIndex, handleRegister, registeredIds, movement, handleHoverChange, name ])
+
   return (
-    <RadioGroupContext.Provider value={{ 
-      value: selectedValue,
-      onValueChange: handleValueChange,
-      hoveredIndex,
-      direction: movement,
-      onHoverChange: handleHoverChange,
-      name 
-    }}>
+    <RadioGroupContext.Provider value={memoizedValues}>
       <div 
         role="radiogroup"
         onMouseLeave={() => handleHoverChange(null)}

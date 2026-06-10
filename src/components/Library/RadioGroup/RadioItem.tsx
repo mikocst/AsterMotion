@@ -1,11 +1,10 @@
-import React, { useId } from 'react';
+import React, { useId, useEffect } from 'react';
 import { useRadioGroupContext } from './RadioGroup';
 import { AnimatePresence, easeOut, motion } from 'motion/react';
 import { cn } from 'src/lib/utils';
 
 interface RadioItemProps extends React.InputHTMLAttributes<HTMLInputElement> {
   value: string;
-  index: number; 
   id?: string;
   children?: React.ReactNode;
   ref?: React.Ref<HTMLInputElement>;
@@ -28,18 +27,23 @@ const bubbleVariants = {
   })
 };
 
-const RadioItem = ({ id, value, index, children, ref, ...props }: RadioItemProps) => {
+const RadioItem = ({ id, value, children, ref, ...props }: RadioItemProps) => {
   const context = useRadioGroupContext();
   const generatedLocalId = useId();
   const radioItemId = id ?? generatedLocalId;
 
   const isSelected = context.value === value;
-  const isHovered = context.hoveredIndex === index;
+  const currentIndex = context.registeredIds.indexOf(radioItemId)
+  const isHovered = currentIndex !== -1 && context.hoveredIndex === currentIndex;
+
+  useEffect(() => {
+    return context.handleRegister(radioItemId)
+  },[radioItemId, context.handleRegister])
 
   return (
     <div
-      onMouseEnter={() => context.onHoverChange(index)}
-      onFocus={() => context.onHoverChange(index)}
+      onMouseEnter={() => context.onHoverChange(currentIndex)}
+      onFocus={() => context.onHoverChange(currentIndex)}
       className="flex flex-row gap-2 p-2 rounded-md items-center relative has-[:focus-visible]:ring-2"
     >
       <input
@@ -53,8 +57,6 @@ const RadioItem = ({ id, value, index, children, ref, ...props }: RadioItemProps
         className="absolute inset-0 z-30 opacity-0 cursor-pointer"
       />
       <div className="relative z-20 flex items-center justify-center w-4 h-4 border border-gray-300 rounded-lg cursor-pointer">
-        
-  
         <AnimatePresence>
           {isSelected && (
             <motion.div 

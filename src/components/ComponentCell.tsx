@@ -66,15 +66,12 @@ const ComponentCell = () => {
           >
             <RadioItem
             value="hobby"
-            index = {1}
             />
             <RadioItem
             value="pro"
-            index={2}
             />
             <RadioItem
             value = "enterprise"
-            index = {3}
             />
           </RadioGroup>
         </div>

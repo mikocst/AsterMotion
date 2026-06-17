@@ -6,6 +6,8 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
+        '@components': 'src/components/index.ts',
+        '@types': 'src/types/index.ts',
         '@assets': 'public/assets',
       },
     },

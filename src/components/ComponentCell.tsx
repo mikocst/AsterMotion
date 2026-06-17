@@ -61,19 +61,7 @@ const ComponentCell = () => {
     <div className = "flex flex-col gap-2 p-3 border border-gray-200 rounded-lg">
         <h3 className = "text-lg">Component Cell</h3>
         <div className="p-3 border border-gray-100 rounded-md">
-          <RadioGroup
-          onValueChange = {setPlan}
-          >
-            <RadioItem
-            value="hobby"
-            />
-            <RadioItem
-            value="pro"
-            />
-            <RadioItem
-            value = "enterprise"
-            />
-          </RadioGroup>
+           
         </div>
       </div>
   )

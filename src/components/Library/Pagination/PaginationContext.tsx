@@ -1,9 +1,15 @@
+import React, { createContext, useContext, useMemo, type ReactNode} from 'react'
+
 interface PaginationContextValue {
     activePage: number
     totalPages: number
     maxButtons: number
     pagesToRender: (number | string)[]
     onPageChange: (page:number) => void
+}
+
+interface PaginationProviderProps extends Omit<PaginationContextValue, 'pagesToRender'> {
+    children: React.ReactNode
 }
 
 const range = (start: number, end:number): number[] => {
@@ -47,4 +53,41 @@ export const generatePaginationRange = (
     }
 
     return []
+}
+
+const paginationContext = createContext<PaginationContextValue | undefined>(undefined);
+
+export const PaginationProvider = ({
+    children,
+    activePage,
+    totalPages,
+    maxButtons = 5,
+    onPageChange,
+} : PaginationProviderProps) => {
+
+    const pagesToRender = useMemo(() => {
+        return generatePaginationRange(activePage, totalPages, maxButtons)
+    }, [activePage, totalPages, maxButtons])
+
+    const value = useMemo(() => ({
+        activePage,
+        totalPages,
+        maxButtons,
+        pagesToRender,
+        onPageChange,
+    }), [activePage, totalPages, maxButtons, pagesToRender, onPageChange]);
+
+    return (
+        <paginationContext.Provider value = {value}>
+            {children}
+        </paginationContext.Provider>
+    )
+}
+
+export const usePagination = () => {
+    const context = useContext(paginationContext)
+    if (context === undefined) {
+        throw new Error('usePagination must be used within a PaginationProvider')
+    }
+    return context
 }

@@ -11,7 +11,7 @@ const PaginationPrevious = () => {
   return (
     <button
     disabled = {isDisabled}
-    className = {`text-sm font-medium border rounded-md h-7 w-7 mr-2 flex justify-center items-center ${
+    className = {`text-sm font-medium rounded-md h-7 w-7 mr-2 flex justify-center items-center ${
                 isDisabled ? "text-gray-300 cursor-not-allowed" : "text-gray-500 hover:bg-gray-100"}`}
     onClick = {() =>{
             if(isDisabled) {
@@ -23,7 +23,8 @@ const PaginationPrevious = () => {
         }
     }
     >
-        <ChevronLeft size = {'16px'} className = "w-4 h-4 text-gray-500"/>
+        <ChevronLeft size = {'16px'} className = {`text-sm rounded-md h-4 w-4 ${
+                isDisabled ? "text-gray-400 cursor-not-allowed" : "text-gray-500 hover:bg-gray-100"}`}/>
     </button>
   )
 }

@@ -9,9 +9,9 @@ interface PaginationProps {
     children: React.ReactNode
 }
 
-const Padgination = ({activePage, totalPages, maxButtons = 5, onPageChange, children}: PaginationProps) => {
+const Pagination = ({activePage, totalPages, maxButtons = 5, onPageChange, children}: PaginationProps) => {
   return (
-    <nav role="navigation" aria-label="pagination" className="flex justify-center w-full">
+    <nav role="navigation" aria-label="pagination" className="flex flex-row justify-center w-full">
       <PaginationProvider
         activePage={activePage}
         totalPages={totalPages}
@@ -24,4 +24,4 @@ const Padgination = ({activePage, totalPages, maxButtons = 5, onPageChange, chil
   )
 }
 
-export default Padgination
+export default Pagination

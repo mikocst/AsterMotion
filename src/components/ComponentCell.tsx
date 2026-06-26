@@ -6,6 +6,10 @@ import Carousel from "./Library/Carousel/Carousel";
 import CarouselItem from "./Library/Carousel/CarouselItem";
 import Badge from "./Library/Badge";
 import Breadcrumb from "./Library/Breadcrumb/Breadcrumb";
+import Pagination from "./Library/Pagination/Pagination";
+import PaginationPrevious from "./Library/Pagination/PaginationPrevious";
+import PaginationContent from "./Library/Pagination/PaginationContent";
+import PaginationNext from "./Library/Pagination/PaginationNext";
 
 interface ComponentCellProps {
       componentName: string;
@@ -56,12 +60,17 @@ const breadcrumbItems = [
 
 const ComponentCell = () => {
   const [plan, setPlan] = useState("pro");
+  const [current, setCurrent] = useState(1)
 
   return (
     <div className = "flex flex-col gap-2 p-3 border border-gray-200 rounded-lg">
         <h3 className = "text-lg">Component Cell</h3>
         <div className="p-3 border border-gray-100 rounded-md">
-           
+           <Pagination activePage={current} totalPages={10} onPageChange={setCurrent}>
+            <PaginationPrevious />
+            <PaginationContent />
+            <PaginationNext />
+          </Pagination>
         </div>
       </div>
   )

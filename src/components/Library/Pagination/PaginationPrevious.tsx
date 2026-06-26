@@ -11,7 +11,7 @@ const PaginationPrevious = () => {
   return (
     <button
     disabled = {isDisabled}
-    className = {`text-sm font-medium border rounded-md h-9 w-9 ${
+    className = {`text-sm font-medium border rounded-md h-7 w-7 mr-2 flex justify-center items-center ${
                 isDisabled ? "text-gray-300 cursor-not-allowed" : "text-gray-500 hover:bg-gray-100"}`}
     onClick = {() =>{
             if(isDisabled) {

@@ -17,20 +17,26 @@ interface ToastProviderProps {
     children: React.ReactNode
 }
 
-const toastContext = createContext<ToastContextValue | undefined>(undefined);
-
 export const ToastProvider = ({
     children
 } : ToastProviderProps) => {
 
     const [toasts, setToasts] = useState<Toast[]>([]);
 
-    const addToast = (toastId:string, description: string) => {
+    const addToast = (type: toastType, description: string) => {
+        const newToast : Toast = {
+            id: crypto.randomUUID(),
+            description: description,
+            toastType: type
+        }
 
+        setToasts(prev => ([...prev, newToast]));
     }
 
     const dismissToast = (toastId: string) => {
-
+        setToasts(prev => prev.filter((toast) => (
+            toast.id !== toastId
+        )))
     }
 
     return (
@@ -43,3 +49,13 @@ export const ToastProvider = ({
         </toastContext.Provider>
     )
 }
+
+const toastContext = createContext<ToastContextValue | undefined>(undefined);
+
+export const useToast = () => {
+    const context = useContext(toastContext);
+    if (!context) {
+        throw new Error('useToast must be used within a ToastProvider');
+    }
+    return context;
+};

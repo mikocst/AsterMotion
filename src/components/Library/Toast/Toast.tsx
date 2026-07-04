@@ -5,6 +5,7 @@ interface ToastProps {
     toastType: "default" | "description" | "success" | "info" | "warning" | "error" | "custom"
     description: string
     id: string
+    header?: string
 }
 
 interface ToastVariants {
@@ -46,13 +47,25 @@ const toastMap : Record<ToastProps['toastType'], ToastVariants> = {
 }
 
 
-const Toast = ({toastType, description, id} : ToastProps) => {
+const Toast = ({toastType, description, id, header} : ToastProps) => {
 
   const variants = toastMap[toastType];
+  const toastHeader = variants.headerRequired === true;
+  const toastIcon = variants.icon
 
   return (
-    <div className = "flex flex-col gap-1">
-        <p className = "text-gray-500">{description}</p>
+    <div 
+    id = {id}
+    className = {`flex flex-col gap-1 p-4 border rounded-lg ${variants.styles}`}>
+        {toastHeader && (
+            <h3>{header}</h3>
+        )}
+        <div className = "flex flex-row gap-2 items-start">
+            {toastIcon && (
+                toastIcon
+            )}
+            <p>{description}</p>
+        </div>
     </div>
   )
 }

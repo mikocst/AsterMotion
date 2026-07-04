@@ -14,12 +14,12 @@ super powers comes responsibility.
 - For v1 of this project, I'm creating a base UI library consisting of the Figma design file and the following components:
     - [x] Accordion
     - [x] Badges
-    - Breadcrumb
+    - [x] Breadcrumb
     - Cards
     - [x] Carousel
     - [x] Input
     - [x] Modal
-    - Pagination
+    - [x] Pagination
     - [x] Radio Input
     - [x] Radio Group
     - [x] Tabs

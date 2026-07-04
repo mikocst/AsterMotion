@@ -1,8 +1,9 @@
 import React from 'react'
 import { CheckCircle, Info, TriangleAlert, CircleAlert } from 'lucide-react'
+import type { toastType } from './types'
 
 interface ToastProps {
-    toastType: "default" | "description" | "success" | "info" | "warning" | "error" | "custom"
+    toastType: toastType
     description: string
     id: string
     header?: string

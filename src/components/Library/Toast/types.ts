@@ -1,0 +1,1 @@
+export type toastType = "default" | "description" | "success" | "info" | "warning" | "error" | "custom"

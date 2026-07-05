@@ -17,7 +17,10 @@ const positionMap: Record<NonNullable<ToasterProps['position']>, string> = {
   "bottom-center": "bottom-0 left-1/2 -translate-x-1/2 p-4 items-center"
 }
 
-const Toaster = ({position, expandedOnHover}: ToasterProps) => {
+const Toaster = ({
+  position = "bottom-right", 
+  expandedOnHover = true
+}: ToasterProps) => {
 
   const {toasts, dismissToast} = useToast();
 
@@ -27,7 +30,7 @@ const Toaster = ({position, expandedOnHover}: ToasterProps) => {
 
   return (
     <div 
-    className={`fixed z-50 flex flex-col gap-3 w-full max-w-sm pointer-events-none ${positionMap[position]}`}
+    className={`fixed z-50 w-full max-w-sm pointer-events-none ${positionMap[position]}`}
     onMouseEnter={() => { if (expandedOnHover) setIsHovered(true) }}
     onMouseLeave={() => { if (expandedOnHover) setIsHovered(false) }}
     >
@@ -36,7 +39,7 @@ const Toaster = ({position, expandedOnHover}: ToasterProps) => {
                     <motion.div
                         key={toast.id}
                         layout
-                        className="w-full pointer-events-auto"
+                        className={`w-full pointer-events-auto ${!isHovered && index > 0 ? 'absolute inset-0' : 'relative'}`}
                     >
                         <Toast
                             id={toast.id}

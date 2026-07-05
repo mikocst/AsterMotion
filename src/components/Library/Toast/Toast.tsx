@@ -12,6 +12,7 @@ interface ToastProps {
     isHovered: boolean
     index: number
     isTop: boolean
+    total: number
 }
 
 interface ToastVariants {
@@ -53,7 +54,7 @@ const toastMap : Record<ToastProps['toastType'], ToastVariants> = {
 }
 
 
-const Toast = ({toastType, description, id, header, onDismiss, isHovered, index, isTop} : ToastProps) => {
+const Toast = ({toastType, description, id, header, onDismiss, isHovered, index, isTop, total} : ToastProps) => {
 
   const variants = toastMap[toastType];
   const toastHeader = variants.headerRequired === true;
@@ -72,14 +73,14 @@ const Toast = ({toastType, description, id, header, onDismiss, isHovered, index,
   return (
     <motion.div 
     animate = {{
-        scale: isHovered ? 1 : 1 - index * 0.05,
+        scale: isHovered ? 1 : 1 - (total - 1 - index) * 0.05,
         y: isHovered ? 0 : index * (isTop ? 10 : -10),
         opacity: index > 2 && !isHovered ? 0 : 1
-    }}
-    style={{ zIndex: 100 - index }}
-    id = {id}
-    className = {`flex flex-col gap-1 p-4 border rounded-lg ${variants.styles}`}
-    >
+        }}
+        style={{ zIndex: 100 - index }}
+        id = {id}
+        className = {` p-4 border rounded-lg ${variants.styles}`}
+        >
         {toastHeader && (
             <h3>{header}</h3>
         )}

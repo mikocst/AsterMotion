@@ -1,12 +1,14 @@
-import React from 'react'
 import { CheckCircle, Info, TriangleAlert, CircleAlert } from 'lucide-react'
 import type { toastType } from './types'
+import React, { useEffect } from 'react'
+import { useToast } from './ToastContext'
 
 interface ToastProps {
     toastType: toastType
     description: string
     id: string
     header?: string
+    onDismiss: (id:string) => void
 }
 
 interface ToastVariants {
@@ -48,11 +50,21 @@ const toastMap : Record<ToastProps['toastType'], ToastVariants> = {
 }
 
 
-const Toast = ({toastType, description, id, header} : ToastProps) => {
+const Toast = ({toastType, description, id, header, onDismiss} : ToastProps) => {
 
   const variants = toastMap[toastType];
   const toastHeader = variants.headerRequired === true;
-  const toastIcon = variants.icon
+  const toastIcon = variants.icon;
+
+  useEffect(() => {
+       const timer =  setTimeout((
+            () => onDismiss(id)
+        ), 4000)
+
+        return(
+           () => clearTimeout(timer)
+        )
+  },[])
 
   return (
     <div 

@@ -1,7 +1,7 @@
 import { CheckCircle, Info, TriangleAlert, CircleAlert } from 'lucide-react'
 import type { toastType } from './types'
 import React, { useEffect } from 'react'
-import { useToast } from './ToastContext'
+import { motion } from 'motion/react'
 
 interface ToastProps {
     toastType: toastType
@@ -9,6 +9,9 @@ interface ToastProps {
     id: string
     header?: string
     onDismiss: (id:string) => void
+    isHovered: boolean
+    index: number
+    isTop: boolean
 }
 
 interface ToastVariants {
@@ -50,7 +53,7 @@ const toastMap : Record<ToastProps['toastType'], ToastVariants> = {
 }
 
 
-const Toast = ({toastType, description, id, header, onDismiss} : ToastProps) => {
+const Toast = ({toastType, description, id, header, onDismiss, isHovered, index, isTop} : ToastProps) => {
 
   const variants = toastMap[toastType];
   const toastHeader = variants.headerRequired === true;
@@ -67,9 +70,16 @@ const Toast = ({toastType, description, id, header, onDismiss} : ToastProps) => 
   },[])
 
   return (
-    <div 
+    <motion.div 
+    animate = {{
+        scale: isHovered ? 1 : 1 - index * 0.05,
+        y: isHovered ? 0 : index * (isTop ? 10 : -10),
+        opacity: index > 2 && !isHovered ? 0 : 1
+    }}
+    style={{ zIndex: 100 - index }}
     id = {id}
-    className = {`flex flex-col gap-1 p-4 border rounded-lg ${variants.styles}`}>
+    className = {`flex flex-col gap-1 p-4 border rounded-lg ${variants.styles}`}
+    >
         {toastHeader && (
             <h3>{header}</h3>
         )}
@@ -79,7 +89,7 @@ const Toast = ({toastType, description, id, header, onDismiss} : ToastProps) => 
             )}
             <p>{description}</p>
         </div>
-    </div>
+    </motion.div>
   )
 }
 

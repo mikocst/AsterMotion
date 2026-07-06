@@ -9,9 +9,9 @@ interface ToasterProps {
 }
 
 const positionMap: Record<NonNullable<ToasterProps['position']>, string> = {
-  "top-left": "top-0 left-0 p-4",
-  "top-right": "top-0 right-0 p-4",
-  "top-center": "top-0 left-1/2 -translate-x-1/2 p-4",
+  "top-left": "top-20 left-0 p-4",
+  "top-right": "top-20 right-0 p-4",
+  "top-center": "top-20 left-1/2 -translate-x-1/2 p-4",
   "bottom-left": "bottom-0 left-0 p-4",
   "bottom-right": "bottom-0 right-0 p-4",
   "bottom-center": "bottom-0 left-1/2 -translate-x-1/2 p-4"
@@ -40,9 +40,7 @@ const Toaster = ({
             <motion.div
               key={toast.id}
               layout
-              className={`w-full pointer-events-auto ${
-                !isHovered ? 'absolute left-0 right-0 bottom-0' : 'relative mt-3'
-              }`}
+              className= "w-full absolute left-0 right-0 bottom-0 pointer-events-auto"
             >
               <Toast
                 id={toast.id}

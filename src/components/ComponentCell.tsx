@@ -93,7 +93,7 @@ const ComponentCell = () => {
            <ToastTriggerPanel/>
         </div>
       </div>
-      <Toaster position="bottom-right" expandedOnHover={true} />
+      <Toaster position="top-center" expandedOnHover={true} />
     </ToastProvider>
   )
 }

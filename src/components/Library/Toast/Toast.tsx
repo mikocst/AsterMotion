@@ -2,6 +2,7 @@ import { CheckCircle, Info, TriangleAlert, CircleAlert } from 'lucide-react'
 import type { toastType } from './types'
 import React, { useEffect } from 'react'
 import { motion } from 'motion/react'
+import { distance } from 'motion'
 
 interface ToastProps {
     toastType: toastType
@@ -59,8 +60,15 @@ const Toast = ({toastType, description, id, header, onDismiss, isHovered, index,
   const variants = toastMap[toastType];
   const toastHeader = variants.headerRequired === true;
   const toastIcon = variants.icon;
+  const effectiveTotal = Math.min(total, 3);
+  const distanceFromNewest = (effectiveTotal - 1) - index;
+  const isOverflowing = index < (total - 3);
 
   useEffect(() => {
+        if(isHovered){
+            return
+        }
+
        const timer =  setTimeout((
             () => onDismiss(id)
         ), 4000)
@@ -68,16 +76,32 @@ const Toast = ({toastType, description, id, header, onDismiss, isHovered, index,
         return(
            () => clearTimeout(timer)
         )
-  },[])
+  },[isHovered, id, onDismiss])
 
   return (
     <motion.div 
+    initial = {{opacity: 0, y: isTop ? -20 : 20, scale: 0.9}}
     animate = {{
-        scale: isHovered ? 1 : 1 - (total - 1 - index) * 0.05,
-        y: isHovered ? 0 : index * (isTop ? 10 : -10),
+        scale: isHovered ? 1 : isOverflowing ? 0.8 : 1 - distanceFromNewest * 0.05,
+
+        y: isHovered 
+        ? distanceFromNewest * (isTop ? 64 : -64) 
+        : distanceFromNewest * (isTop ? 10 : -10),
+
         opacity: index > 2 && !isHovered ? 0 : 1
         }}
-        style={{ zIndex: 100 - index }}
+
+        exit={{ 
+            opacity: 0, 
+            scale: 0.95,
+            y: isTop ? -40 : 40,
+            transition: { duration: 0.05 }
+          }}
+
+        style={{ 
+            zIndex: 100 + index,
+            transformOrigin: isTop ? "top center" : "bottom center"
+        }}
         id = {id}
         className = {` p-4 border rounded-lg ${variants.styles}`}
         >
@@ -89,6 +113,7 @@ const Toast = ({toastType, description, id, header, onDismiss, isHovered, index,
                 toastIcon
             )}
             <p>{description}</p>
+            <p>{index}</p>
         </div>
     </motion.div>
   )

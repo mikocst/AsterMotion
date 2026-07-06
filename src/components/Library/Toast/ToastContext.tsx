@@ -23,14 +23,17 @@ export const ToastProvider = ({
 
     const [toasts, setToasts] = useState<Toast[]>([]);
 
-    const addToast = (type: toastType, description: string) => {
-        const newToast : Toast = {
-            id: crypto.randomUUID(),
-            description: description,
-            toastType: type
-        }
+    const addToast = (toastType: toastType, description: string) => {
+        const id = crypto.randomUUID();
 
-        setToasts(prev => ([...prev, newToast]));
+        setToasts(prev => {
+                const newToast = { id, toastType, description };
+                
+                if (prev.length >= 3) {
+                  return [...prev.slice(1), newToast];
+                }
+                return [...prev, newToast];
+        });
     }
 
     const dismissToast = (toastId: string) => {

@@ -62,11 +62,13 @@ const breadcrumbItems = [
   },
 ]
 
+//for toast
+
 const ToastTriggerPanel = () => {
   const { addToast } = useToast()
 
   return (
-    <div className="flex gap-2 mt-4 pt-4 border-t border-gray-100">
+    <div className="flex gap-2 mt-4 pt-4 border-gray-100">
       <button 
         onClick={() => addToast( "success", "Changes deployed successfully!")}
         className="px-3 py-1.5 bg-blue-600 text-white text-xs font-medium rounded hover:bg-blue-700 transition-colors"
@@ -82,8 +84,6 @@ const ComponentCell = () => {
   const [plan, setPlan] = useState("pro");
   const [current, setCurrent] = useState(1);
 
-  //for toast
-
 
   return (
     <ToastProvider>
@@ -93,7 +93,7 @@ const ComponentCell = () => {
            <ToastTriggerPanel/>
         </div>
       </div>
-      <Toaster position="top-center" expandedOnHover={true} />
+      <Toaster position="top-right" expandedOnHover={true} />
     </ToastProvider>
   )
 }

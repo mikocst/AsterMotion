@@ -1,0 +1,1 @@
+export type CardVariants = "default" | "figure" | "image-full" | "image-half"

@@ -1,8 +1,14 @@
 
 
-const Card = () => {
+interface CardProps {
+  children: React.ReactNode
+}
+
+const Card = ({children} : CardProps) => {
   return (
-    <div>Card</div>
+    <div>
+      {children}
+    </div>
   )
 }
 

@@ -24,7 +24,7 @@ super powers comes responsibility.
     - [x] Radio Group
     - [x] Tabs
     - [x] Switch
-    - Toast
+    - [x] Toast
 
     v1.2 make all existing v1.0 packageable and test
 

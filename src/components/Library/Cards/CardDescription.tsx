@@ -1,8 +1,14 @@
 import React from 'react'
 
-const CardDescription = () => {
+interface CardDescriptionProps {
+  children: React.ReactNode
+}
+
+const CardDescription = ({children}: CardDescriptionProps) => {
   return (
-    <div>CardDescription</div>
+    <div>
+      {children}
+    </div>
   )
 }
 

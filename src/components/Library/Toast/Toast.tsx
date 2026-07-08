@@ -1,7 +1,7 @@
 import { CheckCircle, Info, TriangleAlert, CircleAlert } from 'lucide-react'
 import type { toastType } from './types'
 import React, { useEffect } from 'react'
-import { motion } from 'motion/react'
+import { cn } from 'src/lib/utils'
 
 interface ToastProps {
     toastType: toastType
@@ -81,7 +81,7 @@ const Toast = ({toastType, description, id, header, onDismiss, isHovered, index,
         transformOrigin: isTop ? "top center" : "bottom center"
       }}
       id={id}
-      className={`p-4 border rounded-lg bg-white ${variants.styles}`}
+      className= {cn('p-4 border rounded-lg bg-white', variants.styles)}
     >
       {toastHeader && <h3>{header}</h3>}
       <div className="flex flex-row gap-2 items-start">

@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { useToast } from './ToastContext'
 import Toast from './Toast'
 import { motion, AnimatePresence } from 'motion/react'
-import { distance } from 'motion'
+import { cn } from 'src/lib/utils'
 
 interface ToasterProps {
     position: "top-left" | "top-right" | "top-center" | "bottom-left" | "bottom-right" | "bottom-center"
@@ -31,7 +31,7 @@ const Toaster = ({
 
 return (
   <div 
-    className={`fixed z-50 w-full max-w-sm pointer-events-none ${positionMap[position]}`}
+    className={cn('fixed z-50 w-full max-w-sm pointer-events-none', positionMap[position])}
     onMouseEnter={() => { if (expandedOnHover) setIsHovered(true) }}
     onMouseLeave={() => { if (expandedOnHover) setIsHovered(false) }}
   >

@@ -1,10 +1,14 @@
+
+
 interface CardProps {
-  type: "default" | "figure" | "image"
+  children: React.ReactNode
 }
 
-const Card = () => {
+const Card = ({children} : CardProps) => {
   return (
-    <div>Card</div>
+    <div>
+      {children}
+    </div>
   )
 }
 

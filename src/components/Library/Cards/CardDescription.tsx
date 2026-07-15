@@ -1,6 +1,7 @@
 import React from 'react'
+import { cn } from 'src/lib/utils'
 
-interface CardDescriptionProps {
+interface CardDescriptionProps extends React.ComponentPropsWithRef<"div"> {
   children: React.ReactNode
 }
 

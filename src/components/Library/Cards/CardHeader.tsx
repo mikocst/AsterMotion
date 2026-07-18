@@ -5,12 +5,14 @@ interface CardHeaderProps extends React.ComponentPropsWithRef<"div"> {
   children: React.ReactNode
 }
 
-const CardHeader = ({children, ...props}: CardHeaderProps) => {
+const CardHeader = ({children, ref, className, ...props}: CardHeaderProps) => {
   return (
     <div 
-    className = {cn("pt-[var(--card-py)] px-[var(--card-px)]")}
+    className = {cn("flex flex-col gap-1.5 pt-[var(--card-py)] px-[var(--card-px)]", className)}
+    ref = {ref}
+    {...props}
     >
-      CardTitle
+      {children}
     </div>
   )
 }

@@ -1,4 +1,3 @@
-import React, {useRef} from 'react'
 import { cn } from 'src/lib/utils'
 
 interface CardFooterProps extends React.ComponentPropsWithRef<"div"> {

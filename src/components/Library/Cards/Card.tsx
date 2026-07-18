@@ -1,13 +1,15 @@
-
-
-interface CardProps {
-  children: React.ReactNode
-  size: "sm" | "md" | "lg" | "xl"
-}
+import { cn } from "src/lib/utils"
 
 interface CardCSSProperties extends React.CSSProperties {
   "--card-px": string
   "--card-py": string
+}
+
+interface CardProps extends React.ComponentPropsWithRef<"div"> {
+  variant?: keyof typeof cardStyles.variant;
+  behavior?: keyof typeof cardStyles.behavior;
+  children: React.ReactNode
+  size: "sm" | "md" | "lg" | "xl"
 }
 
 const styleMap: Record<CardProps["size"], CardCSSProperties> = {
@@ -27,11 +29,33 @@ const styleMap: Record<CardProps["size"], CardCSSProperties> = {
     "--card-px": "2.5rem",
     "--card-py": "2.5rem",
     }
-}
+};
 
-const Card = ({children, size = "md"} : CardProps) => {
+const cardStyles = {
+  variant: {
+    bordered: "border border-border bg-card",
+    flat: "bg-muted/50 border border-transparent",
+    elevated: "bg-card border border-border/50 shadow-sm"
+  },
+  behavior: {
+    static: "",
+    interactive: "transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md cursor-pointer"
+  }
+};
+
+const Card = ({
+  children,
+  ref, className, size = "md",
+  variant = "bordered",
+  behavior = "static",
+  ...props} : CardProps) => {
   return (
-    <div style = {styleMap[size]}>
+    <div 
+    className = {cn(cardStyles.variant[variant], cardStyles.behavior[behavior], className)}
+    style = {{...styleMap[size], ...props.style}}
+    ref = {ref}
+    {...props}
+    >
       {children}
     </div>
   )

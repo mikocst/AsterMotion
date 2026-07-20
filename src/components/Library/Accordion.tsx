@@ -60,7 +60,7 @@ const handleKeyDown = (e: React.KeyboardEvent, index:number) => {
                 className = "flex flex-row justify-between py-1 focus-visible:rounded-md cursor-pointer"
                 onClick = {() => toggleAccordionItem(index)}
                 >
-                    <p className = "text-gray-700 font-medium">{item.name}</p>
+                    <p className = "text-gray-700 font-medium min-w-0 text-left">{item.name}</p>
                     <MotionChevronLeft
                         animate = {{rotate: activeIndex === index ? -90 : 0}}
                         transition = {{ease: 'easeOut', duration: 0.2}}

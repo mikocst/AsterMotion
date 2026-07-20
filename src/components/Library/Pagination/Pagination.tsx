@@ -11,7 +11,7 @@ interface PaginationProps {
 
 const Pagination = ({activePage, totalPages, maxButtons = 5, onPageChange, children}: PaginationProps) => {
   return (
-    <nav role="navigation" aria-label="pagination" className="flex flex-row justify-center w-full">
+    <nav role="navigation" aria-label="pagination" className="flex flex-row items-center justify-center w-full">
       <PaginationProvider
         activePage={activePage}
         totalPages={totalPages}

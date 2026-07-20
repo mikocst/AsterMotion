@@ -3,7 +3,16 @@ import { useState } from "react";
 
 const MotionDiv = motion.create('div');
 
-const TabContent = [
+export interface TabItem {
+  title: string
+  content: React.ReactNode
+}
+
+interface TabsProps {
+  tabs?: TabItem[]
+}
+
+const defaultTabs: TabItem[] = [
   {
     title: "Draft Tab",
     content: "Content here is a draft and not finalized."
@@ -18,16 +27,15 @@ const TabContent = [
   }
 ]
 
-const Tabs = () => {
+const Tabs = ({ tabs = defaultTabs }: TabsProps) => {
     const [activeTab, setActiveTab] = useState(0);
-    console.log(activeTab);
   return (
     <div className = "flex flex-col gap-1">
-       <div className = "flex flex-row gap-4 py-2 border-b border-gray-200 relative">
-            {TabContent.map((tab, index) => (
+       <div className = "flex flex-row gap-4 py-2 overflow-x-auto border-b border-gray-200 relative">
+            {tabs.map((tab, index) => (
             <div key={index}
                 onClick={() => setActiveTab(index)}
-                className = "flex flex-col relative z-20 cursor-pointer"
+                className = "flex flex-col relative z-20 flex-shrink-0 cursor-pointer"
                 >
                 {activeTab === index && (
                     <MotionDiv
@@ -37,7 +45,7 @@ const Tabs = () => {
                         className = "absolute inset-0 h-auto bg-blue-200 rounded-md z-10 w-full"
                     />
                     )}
-                    <h3 className = {activeTab === index ? "text-blue-800 font-medium relative z-20 px-2" : "text-gray-400 relative z-20 px-2 hover:font-medium"}>
+                    <h3 className = {activeTab === index ? "text-blue-800 font-medium relative z-20 px-2 whitespace-nowrap" : "text-gray-400 relative z-20 px-2 whitespace-nowrap hover:font-medium"}>
                         {tab.title}
                     </h3>
 
@@ -47,7 +55,7 @@ const Tabs = () => {
        <AnimatePresence
        mode='wait'
        >
-         {TabContent[activeTab] && (
+         {tabs[activeTab] && (
             <MotionDiv
              key = {activeTab}
              initial = {{opacity: 0}}
@@ -55,7 +63,7 @@ const Tabs = () => {
              exit = {{opacity: 0}}
              transition = {{duration: 0.2, ease: "easeOut"}}
             >
-                <p>{TabContent[activeTab].content}</p>
+                <div>{tabs[activeTab].content}</div>
             </MotionDiv>
          )}
        </AnimatePresence>

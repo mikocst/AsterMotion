@@ -78,7 +78,7 @@ const Carousel = ({children}: CarouselProps) => {
         >
             <ArrowLeft className = "w-4 h-4 text-gray-600"></ArrowLeft>
         </Button>
-             <div ref = {widthRef} className = "h-full overflow-hidden ">
+             <div ref = {widthRef} className = "h-full self-stretch overflow-hidden ">
             <CarouselContent
             >
             {children}

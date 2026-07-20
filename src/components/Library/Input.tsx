@@ -47,7 +47,7 @@ const Input = ({label, error, ref, ...props}: InputProps) => {
         id={inputId}
         aria-invalid = {!!error}
         aria-describedby= {error ? `${inputId}-error` : undefined}
-        className = {cn("px-3 py-2 rounded-md border",
+        className = {cn("w-full px-3 py-2 rounded-md border",
             getInputStyles())}
         />
         {error && typeof error === 'string' && (

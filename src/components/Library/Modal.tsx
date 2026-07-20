@@ -89,12 +89,12 @@ useEffect(() => {
               onAnimationComplete = {(definition) => {
                 if(definition === "exit" && dialogRef.current?.open) {dialogRef.current.close()}
               }}
-              className = "w-full max-w-md p-6 border border-gray-200 rounded-lg"
+              className = "w-[calc(100%-2rem)] max-w-md p-6 border border-gray-200 rounded-lg"
               >
                   <div>
                       <h3 className = "mb-4 text-lg font-medium">Confirm Changes</h3>
                       <p className = "mb-6 text-gray-700">{content}</p>
-                      <div className = "flex flex-row justify-end gap-2">
+                      <div className = "flex flex-row flex-wrap justify-end gap-2">
                           <Button
                           variant = {buttonVariant.Secondary}
                           buttonCopy = {buttonCopy.CANCEL}

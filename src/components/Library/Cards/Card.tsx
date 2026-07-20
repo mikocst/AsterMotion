@@ -45,14 +45,17 @@ const cardStyles = {
 
 const Card = ({
   children,
-  ref, className, size = "md",
+  ref,
+  className,
+  style,
+  size = "md",
   variant = "bordered",
   behavior = "static",
   ...props} : CardProps) => {
   return (
     <div 
     className = {cn(cardStyles.variant[variant], cardStyles.behavior[behavior], className)}
-    style = {{...styleMap[size], ...props.style}}
+    style = {{...styleMap[size], ...style}}
     ref = {ref}
     {...props}
     >

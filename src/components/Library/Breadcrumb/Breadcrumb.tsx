@@ -56,7 +56,7 @@ const Breadcrumb = ({items, maxItems = 5, separator, renderItem} : BreadCrumbPro
 
   return (
     <nav>
-      <ul className='flex flex-row gap-1'>
+      <ul className='flex flex-row flex-wrap items-center gap-1'>
         {items.length <= enforcedMaxItems ? (        
             <BreadcrumbStandard
             items = {items}

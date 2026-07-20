@@ -20,7 +20,7 @@ const { title = 'AsterMotion' } = Astro.props;
 		<main>
 			<AsterProvider client:load>
 				<div class="relative">
-					<NavBar />
+					<NavBar client:load />
 					<slot />
 				</div>
 			</AsterProvider>

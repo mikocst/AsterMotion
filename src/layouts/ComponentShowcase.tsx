@@ -35,11 +35,7 @@ const sections = [
 const ComponentShowcase = () => {
   return (
     <ToastProvider>
-      <div className="flex flex-col w-full gap-12">
-        <div>
-          <h2 className="text-2xl">Component Showcase</h2>
-          <p className="mt-1 text-sm text-gray-500">Real layouts built with the AsterMotion component library.</p>
-        </div>
+      <div className="flex flex-col w-full gap-6">
         {sections.map((section, index) => (
           <section key={section.id} className="flex flex-col gap-4">
             <div>

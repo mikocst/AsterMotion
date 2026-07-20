@@ -65,7 +65,7 @@ const GalleryPage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {visibleProjects.map((project) => (
             <Card key={project.id} size="sm" variant="bordered">
-              <CardHeader>
+              <CardHeader className="pb-[var(--card-py)]">
                 <CardTitle>{project.title}</CardTitle>
                 <CardDescription>{project.description}</CardDescription>
               </CardHeader>

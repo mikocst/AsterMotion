@@ -33,9 +33,9 @@ const styleMap: Record<CardProps["size"], CardCSSProperties> = {
 
 const cardStyles = {
   variant: {
-    bordered: "border border-border bg-card",
-    flat: "bg-muted/50 border border-transparent",
-    elevated: "bg-card border border-border/50 shadow-sm"
+    bordered: "rounded-md border border-border bg-card",
+    flat: "rounded-md bg-muted/50 border border-transparent",
+    elevated: "rounded-md bg-card border border-border/50 shadow-sm"
   },
   behavior: {
     static: "",

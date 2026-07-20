@@ -8,7 +8,7 @@ const CardFooter = ({children, ref, className, ...props}: CardFooterProps) => {
 
   return (
     <div 
-    className = {cn("pb-[var(--card-py)] px-[var(--card-px)]", className)}
+    className = {cn("pt-4 pb-[var(--card-py)] px-[var(--card-px)]", className)}
     ref = {ref}
     {...props}
     >

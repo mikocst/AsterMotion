@@ -8,7 +8,7 @@ export default defineConfig({
       alias: {
         '@components': 'src/components/index.ts',
         '@types': 'src/types/index.ts',
-        '@assets': 'public/assets',
+        '@assets': 'src/assets',
       },
     },
   }

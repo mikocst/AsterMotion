@@ -9,7 +9,7 @@
       "@components/*": ["src/components/*"],
       "@types": ["src/types/index.ts"],
       "@types/*": ["src/types/*"],
-      "@assets/": ["assets/*"] 
+      "@assets/*": ["src/assets/*"]
     }
   }
 }

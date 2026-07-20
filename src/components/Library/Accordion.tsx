@@ -41,7 +41,7 @@ const handleKeyDown = (e: React.KeyboardEvent, index:number) => {
 }
 
   return (
-    <div className = "flex flex-col gap-2">
+    <div className = "flex flex-col w-full gap-2">
         {items.map((item, index) => {
             const triggerId = `${generatedId}-trigger-${index}`
             const contentId = `${generatedId}-content-${index}`

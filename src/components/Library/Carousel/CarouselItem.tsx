@@ -1,9 +1,10 @@
 import { useContext, useId, useEffect } from 'react';
+import type { ReactNode } from 'react';
 import { CarouselContext } from './CarouselContext';
 import { motion } from 'motion/react';
 
 interface CarouselItemProps {
-    item: string,
+    item: ReactNode,
     id: string;
 }
 
@@ -29,7 +30,7 @@ const CarouselItem = ({item, id}: CarouselItemProps) => {
     transition = {{ease: 'easeInOut', duration: 0.2}}
     style={{width: context.itemWidth, minWidth: context.itemWidth}}
     className = "flex items-center justify-center flex-shrink-0 h-full p-6 sm:p-12 md:p-24 border border-gray-300 rounded-md">
-            <p>{item}</p>
+            {item}
         </motion.div>
   )
 }

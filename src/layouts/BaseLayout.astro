@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import NavBar from '../components/NavBar';
 import { AsterProvider } from '../context/AsterContext';
+import favicon from '@assets/Logo.png';
 
 interface Props {
 	title?: string;
@@ -14,6 +15,7 @@ const { title = 'AsterMotion' } = Astro.props;
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/png" href={favicon.src} />
 		<title>{title}</title>
 	</head>
 	<body>

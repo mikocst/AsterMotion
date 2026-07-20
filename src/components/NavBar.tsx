@@ -6,8 +6,7 @@ import SearchPalette from './Library/SearchPalette';
 
 const navLinks = [
     { label: 'Components', href: '/docs/accordion' },
-    { label: 'Change Log', href: undefined },
-    { label: 'Feedback', href: undefined },
+    { label: 'Change Log', href: '/changelog' },
 ];
 
 const MotionDiv = motion.create('div');

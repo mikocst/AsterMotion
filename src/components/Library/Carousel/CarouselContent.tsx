@@ -18,7 +18,7 @@ const CarouselContent = ({children}: CarouselContentProps) => {
         <motion.div 
         animate = {{x: -(context.activeIndex * context.itemWidth)}}
         transition = {context.itemWidth === 0 ? { duration: 0 } : { ease: 'easeOut', duration: 0.3 }}
-        className = "flex flex-row ">
+        className = "flex flex-row h-full">
             {children}
         </motion.div>
     </div>

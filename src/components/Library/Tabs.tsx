@@ -15,7 +15,7 @@ interface TabsProps {
 const defaultTabs: TabItem[] = [
   {
     title: "Draft Tab",
-    content: "Content here is a draft and not finalized."
+    content: "Content is here and will change."
   },
   {
     title: "Low-Fi Tab",
@@ -31,18 +31,18 @@ const Tabs = ({ tabs = defaultTabs }: TabsProps) => {
     const [activeTab, setActiveTab] = useState(0);
   return (
     <div className = "flex flex-col gap-1">
-       <div className = "flex flex-row gap-4 py-2 overflow-x-auto border-b border-gray-200 relative">
+       <div className = "relative flex flex-row gap-4 py-2 overflow-x-auto border-b border-gray-200">
             {tabs.map((tab, index) => (
             <div key={index}
                 onClick={() => setActiveTab(index)}
-                className = "flex flex-col relative z-20 flex-shrink-0 cursor-pointer"
+                className = "relative z-20 flex flex-col flex-shrink-0 cursor-pointer"
                 >
                 {activeTab === index && (
                     <MotionDiv
                         layoutId = "pill"
                         layout
                         transition = {{ ease: 'easeInOut', duration: 0.3 }}
-                        className = "absolute inset-0 h-auto bg-blue-200 rounded-md z-10 w-full"
+                        className = "absolute inset-0 z-10 w-full h-auto bg-blue-200 rounded-md"
                     />
                     )}
                     <h3 className = {activeTab === index ? "text-blue-800 font-medium relative z-20 px-2 whitespace-nowrap" : "text-gray-400 relative z-20 px-2 whitespace-nowrap hover:font-medium"}>

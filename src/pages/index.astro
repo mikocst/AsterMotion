@@ -1,38 +1,17 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import {HeroSection, ComponentShowcase} from 'src/layouts';
-import NavBar from 'src/components/NavBar';
-import { AsterProvider } from 'src/context/AsterContext';
-
-
-const heroCopy = {
-	copy: "Aster.motion is an open source web component library. Copy, paste, and edit the components or the design system for your own web projects. Design and coded by Miko.CST."
-}
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>AsterMotion</title>
-	</head>
-	<body>
-        <main>
-			<AsterProvider client:load>
-            <div class = "relative">
-				<NavBar/>
-				<div class = "flex flex-col items-center justify-start gap-8 px-8 py-16">
-					<HeroSection
-					client:load
-					/>
-					<div class = "w-full">
-						<ComponentShowcase
-						client:load
-						/>
-					</div>
-				</div>
-			</div>
-			</AsterProvider>
-		</main>
-	</body>
-
+<BaseLayout title="AsterMotion">
+	<div class = "flex flex-col items-center justify-start gap-8 px-4 py-10 sm:px-8 sm:py-16">
+		<HeroSection
+		client:load
+		/>
+		<div class = "w-full">
+			<ComponentShowcase
+			client:load
+			/>
+		</div>
+	</div>
+</BaseLayout>

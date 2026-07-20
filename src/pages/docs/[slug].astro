@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DocsPage from '../../layouts/docs/DocsPage';
+import { docsRegistry } from '../../lib/docsRegistry';
+
+export function getStaticPaths() {
+	return docsRegistry.map((entry) => ({ params: { slug: entry.slug } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const entry = docsRegistry.find((item) => item.slug === slug);
+---
+
+<BaseLayout title={entry ? `${entry.name} — AsterMotion Docs` : 'AsterMotion Docs'}>
+	<DocsPage slug={slug} client:load />
+</BaseLayout>

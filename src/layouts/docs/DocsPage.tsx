@@ -32,7 +32,7 @@ const DocsPage = ({ slug }: DocsPageProps) => {
           <Demo />
         </div>
 
-        <CodeBlock code={entry.code} />
+        <CodeBlock files={entry.code} />
       </div>
     </div>
   );

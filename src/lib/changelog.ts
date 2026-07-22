@@ -13,7 +13,7 @@ export const changelog: ChangelogEntry[] = [
     tag: 'release',
   },
   {
-    date: '2026-04-22',
+    date: '2025-07-22',
     title: 'Figma Design system created',
     description: 'Branding and philosophies defined in Figma and are now being implemented into code.',
     tag: 'design',

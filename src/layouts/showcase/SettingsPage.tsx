@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Breadcrumb from "@components/Library/Breadcrumb/Breadcrumb";
+import type { BreadcrumbItem } from "@components/Library/Breadcrumb/types";
 import Tabs from "@components/Library/Tabs";
 import Input from "@components/Library/Input";
 import Switch from "@components/Library/Switch";
@@ -14,6 +15,8 @@ const settingsBreadcrumb = [
   { id: "home", title: "Home", link: "#" },
   { id: "settings", title: "Settings", link: "#" },
 ];
+
+const renderStaticBreadcrumbItem = (item: BreadcrumbItem) => <span>{item.title}</span>;
 
 const notificationRows = [
   { id: "email", label: "Email notifications" },
@@ -71,7 +74,7 @@ const NotificationsTab = () => {
 const SettingsPage = () => {
   return (
     <div className="flex flex-col gap-4 w-full">
-      <Breadcrumb items={settingsBreadcrumb} />
+      <Breadcrumb items={settingsBreadcrumb} renderItem={renderStaticBreadcrumbItem} />
       <div className="flex flex-col gap-1">
         <h3 className="text-xl font-medium">Settings</h3>
         <p className="text-sm text-gray-500">Manage your profile, plan, and notification preferences.</p>

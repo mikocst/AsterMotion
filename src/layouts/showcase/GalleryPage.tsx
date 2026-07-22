@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Breadcrumb from "@components/Library/Breadcrumb/Breadcrumb";
+import type { BreadcrumbItem } from "@components/Library/Breadcrumb/types";
 import Carousel from "@components/Library/Carousel/Carousel";
 import CarouselItem from "@components/Library/Carousel/CarouselItem";
 import Card from "@components/Library/Cards/Card";
@@ -17,6 +18,8 @@ const galleryBreadcrumb = [
   { id: "library", title: "Library", link: "#" },
   { id: "gallery", title: "Gallery", link: "#" },
 ];
+
+const renderStaticBreadcrumbItem = (item: BreadcrumbItem) => <span>{item.title}</span>;
 
 const featured = [
   { id: "feature-1", label: "Spring Campaign" },
@@ -46,7 +49,7 @@ const GalleryPage = () => {
   return (
     <div className="flex flex-col gap-6 w-full">
       <div className="flex flex-col gap-4">
-        <Breadcrumb items={galleryBreadcrumb} />
+        <Breadcrumb items={galleryBreadcrumb} renderItem={renderStaticBreadcrumbItem} />
         <div className="flex flex-col gap-1">
           <h3 className="text-xl font-medium">Featured work</h3>
           <p className="text-sm text-gray-500">A rotating look at recent projects.</p>

@@ -1,4 +1,5 @@
 import Breadcrumb from '@components/Library/Breadcrumb/Breadcrumb';
+import type { BreadcrumbItem } from '@components/Library/Breadcrumb/types';
 
 const items = [
   { id: '1', title: 'Home', link: '#' },
@@ -7,6 +8,8 @@ const items = [
   { id: '4', title: 'Breadcrumb', link: '#' },
 ];
 
-const BreadcrumbDemo = () => <Breadcrumb items={items} maxItems={3} />;
+const renderStaticBreadcrumbItem = (item: BreadcrumbItem) => <span>{item.title}</span>;
+
+const BreadcrumbDemo = () => <Breadcrumb items={items} maxItems={3} renderItem={renderStaticBreadcrumbItem} />;
 
 export default BreadcrumbDemo;

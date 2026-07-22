@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import logo from '@assets/Logo.png'
+import logo from '@assets/AsterMotionLogo.svg'
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, Search } from 'lucide-react';
 import SearchPalette from './Library/SearchPalette';

@@ -7,7 +7,8 @@ export enum buttonCopy {
     OPEN_DIALOG = "Open Dialog",
     SAVE_CHANGES = "Save Changes",
     SIGN_IN = "Sign In",
-    SELECT_PLAN = "Select Plan"
+    SELECT_PLAN = "Select Plan",
+    INSTALLATION = "Installation"
 }
 
 export enum buttonVariant {

@@ -18,6 +18,11 @@ const HeroSection = () => {
 						variant={buttonVariant.Primary}
 						onClick={() => { window.location.href = '/docs/accordion'; }}
 						/>
+						<Button
+						buttonCopy= {buttonCopy.INSTALLATION}
+						variant={buttonVariant.Secondary}
+						onClick={() => { window.location.href = '/docs/installation'; }}
+						/>
 					</div>
             	</div>
   )

@@ -24,7 +24,7 @@ const DocsPage = ({ slug }: DocsPageProps) => {
     const Content = guideEntry.Content;
 
     return (
-      <div className="flex flex-col w-full max-w-6xl gap-8 px-4 py-10 mx-auto sm:px-8 lg:flex-row lg:gap-12">
+      <div className="flex flex-col w-full max-w-6xl gap-8 px-4 pt-24 pb-10 mx-auto sm:px-8 lg:flex-row lg:gap-12 lg:pt-10">
         <DocsSidebar activeSlug={guideEntry.slug} />
         <div className="flex flex-col flex-1 min-w-0 gap-6">
           <div>
@@ -42,7 +42,7 @@ const DocsPage = ({ slug }: DocsPageProps) => {
   const Demo = entry.Demo;
 
   return (
-    <div className="flex flex-col w-full max-w-6xl gap-8 px-4 py-10 mx-auto sm:px-8 lg:flex-row lg:gap-12">
+    <div className="flex flex-col w-full max-w-6xl gap-8 px-4 pt-24 pb-10 mx-auto sm:px-8 lg:flex-row lg:gap-12 lg:pt-10">
       <DocsSidebar activeSlug={entry.slug} />
       <div className="flex flex-col flex-1 min-w-0 gap-6">
         <div>

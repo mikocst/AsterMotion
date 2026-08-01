@@ -1,9 +1,17 @@
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown, { type Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 interface DocsMarkdownProps {
   source: string;
 }
+
+const components: Components = {
+  table: ({ node, ...props }) => (
+    <div className="overflow-x-auto">
+      <table {...props} />
+    </div>
+  ),
+};
 
 const DocsMarkdown = ({ source }: DocsMarkdownProps) => (
   <div
@@ -15,7 +23,9 @@ const DocsMarkdown = ({ source }: DocsMarkdownProps) => (
     prose-table:text-sm prose-thead:border-gray-200 prose-th:text-gray-700 prose-td:text-gray-500
     prose-tr:border-gray-100"
   >
-    <ReactMarkdown remarkPlugins={[remarkGfm]}>{source}</ReactMarkdown>
+    <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
+      {source}
+    </ReactMarkdown>
   </div>
 );
 

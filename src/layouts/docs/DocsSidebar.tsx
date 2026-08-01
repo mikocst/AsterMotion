@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { Menu, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { docsRegistry } from 'src/lib/docsRegistry';
 import { guidesRegistry } from 'src/lib/guidesRegistry';
 import { cn } from 'src/lib/utils';
@@ -79,11 +79,11 @@ const DocsSidebar = ({ activeSlug }: DocsSidebarProps) => {
 
       <button
         onClick={() => setIsOpen(true)}
-        aria-label="Open navigation menu"
+        aria-label="Open docs menu"
         aria-expanded={isOpen}
-        className="fixed z-30 p-3 text-white rounded-full shadow-lg cursor-pointer bottom-5 right-5 bg-primary lg:hidden"
+        className="fixed z-30 rounded-full bg-primary px-4 py-3 text-sm font-medium text-white shadow-lg cursor-pointer top-20 left-5 lg:hidden"
       >
-        <Menu className="w-5 h-5" />
+        Docs Menu
       </button>
 
       <AnimatePresence>
@@ -97,15 +97,15 @@ const DocsSidebar = ({ activeSlug }: DocsSidebarProps) => {
             onClick={close}
           >
             <motion.div
-              initial={{ x: '100%' }}
+              initial={{ x: '-100%' }}
               animate={{ x: 0 }}
-              exit={{ x: '100%' }}
+              exit={{ x: '-100%' }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
               onClick={(e) => e.stopPropagation()}
-              className="fixed inset-y-0 right-0 flex w-full max-w-xs flex-col gap-6 overflow-y-auto bg-white py-4 shadow-xl"
+              className="fixed inset-y-0 left-0 flex w-full max-w-xs flex-col gap-6 overflow-y-auto bg-white py-4 shadow-xl"
             >
               <div className="flex flex-row items-center justify-between px-4">
-                <p className="text-sm font-medium text-gray-700">Menu</p>
+                <p className="text-sm font-medium text-gray-700">Docs Menu</p>
                 <button
                   onClick={close}
                   aria-label="Close navigation menu"

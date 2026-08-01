@@ -10,14 +10,14 @@ const Footer = () => {
     return (
         <footer className="relative w-full overflow-hidden bg-primary text-white">
             <div className="flex flex-col w-full gap-10 px-4 pt-10 sm:gap-16 sm:px-8 sm:pt-16">
-                <div className="flex flex-col items-start justify-between w-full gap-6 sm:flex-row sm:items-center">
-                    <p className="font-mono text-sm text-white/70">© {year} Aster.Motion</p>
+                <div className="flex flex-col items-start justify-between w-full gap-6 sm:flex-row sm:items-start">
+                    <p className="text-sm text-white/70">© {year} Aster.Motion</p>
                     <ul className="flex flex-col items-start gap-2 sm:items-end">
                         {footerLinks.map((link) => (
                             <li key={link.label}>
                                 <a
                                     href={link.href}
-                                    className="font-mono text-sm text-white/70 transition-colors duration-150 ease-out hover:text-white"
+                                    className="text-sm text-white/70 transition-colors duration-150 ease-out hover:text-white"
                                 >
                                     [ {link.label} ]
                                 </a>
@@ -33,7 +33,7 @@ const Footer = () => {
                     >
                         ASTER<span>*</span>
                     </p>
-                    <p className="self-end pb-2 font-mono text-xs text-white/70 sm:flex-shrink-0 sm:pb-4 sm:text-sm">
+                    <p className="self-end pb-2 text-xs text-white/70 sm:flex-shrink-0 sm:pb-4 sm:text-sm">
                         Design and Coded by{' '}
                         <a
                             href="https://mikocst.me/"

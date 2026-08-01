@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import logo from '@assets/AsterMotionLogo.svg'
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Search, Github } from 'lucide-react';
+import { Menu, X, Search } from 'lucide-react';
 import SearchPalette from './Library/SearchPalette';
 
 const navLinks = [
@@ -82,9 +82,7 @@ const NavBar = () => {
                                     href={link.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex flex-row items-center gap-1.5"
                                 >
-                                    <Github className="w-4 h-4" />
                                     {link.label}
                                 </a>
                             ) : (
@@ -141,9 +139,8 @@ const NavBar = () => {
                                         target={link.external ? '_blank' : undefined}
                                         rel={link.external ? 'noopener noreferrer' : undefined}
                                         onClick={closeMobileMenu}
-                                        className="flex flex-row items-center gap-2 px-3 py-2 text-gray-600 rounded-md hover:bg-gray-50 hover:text-primary"
+                                        className="block px-3 py-2 text-gray-600 rounded-md hover:bg-gray-50 hover:text-primary"
                                     >
-                                        {link.external && <Github className="w-4 h-4" />}
                                         {link.label}
                                     </a>
                                 </li>

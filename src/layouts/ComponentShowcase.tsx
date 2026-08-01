@@ -50,7 +50,7 @@ const ComponentShowcase = () => {
           </section>
         ))}
       </div>
-      <Toaster position="top-right" expandedOnHover={true} />
+      <Toaster position="bottom-right" expandedOnHover={true} />
     </ToastProvider>
   );
 };

@@ -1,3 +1,4 @@
+import { navigate } from 'astro:transitions/client';
 import { buttonCopy, buttonVariant } from '@types';
 import Button from '@components/Button';
 
@@ -16,12 +17,12 @@ const HeroSection = () => {
 						<Button
 						buttonCopy= {buttonCopy.BROWSE}
 						variant={buttonVariant.Primary}
-						onClick={() => { window.location.href = '/docs/accordion'; }}
+						onClick={() => navigate('/docs/accordion')}
 						/>
 						<Button
 						buttonCopy= {buttonCopy.INSTALLATION}
 						variant={buttonVariant.Secondary}
-						onClick={() => { window.location.href = '/docs/installation'; }}
+						onClick={() => navigate('/docs/installation')}
 						/>
 					</div>
             	</div>

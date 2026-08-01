@@ -45,10 +45,22 @@ const NavList = ({ title, entries, activeSlug, onNavigate }: NavListProps) => (
   </div>
 );
 
-const DocsSidebar = ({ activeSlug }: DocsSidebarProps) => {
+const slugFromPath = (pathname: string) => pathname.replace(/^\/docs\//, '').replace(/\/$/, '');
+
+const DocsSidebar = ({ activeSlug: initialActiveSlug }: DocsSidebarProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSlug, setActiveSlug] = useState(initialActiveSlug);
 
   const close = () => setIsOpen(false);
+
+  // This island is persisted across Astro view transitions (transition:persist),
+  // so it never re-mounts and never receives a fresh `activeSlug` prop after the
+  // first paint — re-derive it from the URL whenever a client-side navigation completes.
+  useEffect(() => {
+    const syncActiveSlug = () => setActiveSlug(slugFromPath(window.location.pathname));
+    document.addEventListener('astro:after-swap', syncActiveSlug);
+    return () => document.removeEventListener('astro:after-swap', syncActiveSlug);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {

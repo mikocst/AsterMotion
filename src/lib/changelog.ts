@@ -7,6 +7,12 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
+    date: '2026-08-01',
+    title: 'Library packed and docs adjusted',
+    description: 'AsterMotion is installable via npm, pnpm, and yarn. Adjusted the documentation page to include explanation of props and styling. When variants are available, they are showcased in the following doc. ',
+    tag: 'feature',
+  },
+  {
     date: '2026-07-20',
     title: 'V1 Launch',
     description: 'V1 launches with the base UI components that are most commonly used throughout the type of work I want to create. V2 is being planned to extend to more components and polishing v1 animations.',

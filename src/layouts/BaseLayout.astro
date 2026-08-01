@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 import { AsterProvider } from '../context/AsterContext';
 import favicon from '@assets/AsterMotionLogo.svg';
 
@@ -17,13 +19,17 @@ const { title = 'AsterMotion' } = Astro.props;
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href={favicon.src} />
 		<title>{title}</title>
+		<ClientRouter />
 	</head>
 	<body>
 		<main>
 			<AsterProvider client:load>
-				<div class="relative">
-					<NavBar client:load />
-					<slot />
+				<div class="relative flex flex-col min-h-screen">
+					<NavBar client:load transition:persist="navbar" />
+					<div class="flex-1" transition:animate="fade">
+						<slot />
+					</div>
+					<Footer client:load transition:persist="footer" />
 				</div>
 			</AsterProvider>
 		</main>

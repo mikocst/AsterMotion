@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Search } from 'lucide-react';
+import { navigate } from 'astro:transitions/client';
 import { docsRegistry } from 'src/lib/docsRegistry';
 
 interface SearchPaletteProps {
@@ -41,7 +42,8 @@ const SearchPalette = ({ isOpen, onClose }: SearchPaletteProps) => {
   }, [query]);
 
   const navigateTo = (slug: string) => {
-    window.location.href = `/docs/${slug}`;
+    onClose();
+    navigate(`/docs/${slug}`);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

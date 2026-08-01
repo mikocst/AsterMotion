@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import DocsPage from '../../layouts/docs/DocsPage';
+import DocsSidebar from '../../layouts/docs/DocsSidebar';
+import DocsContent from '../../layouts/docs/DocsContent';
 import { docsRegistry } from '../../lib/docsRegistry';
 import { guidesRegistry } from '../../lib/guidesRegistry';
 
@@ -13,5 +14,10 @@ const entry = docsRegistry.find((item) => item.slug === slug) ?? guidesRegistry.
 ---
 
 <BaseLayout title={entry ? `${entry.name} — AsterMotion Docs` : 'AsterMotion Docs'}>
-	<DocsPage slug={slug} client:load />
+	<div class="flex flex-col w-full max-w-6xl gap-8 px-4 pt-24 pb-10 mx-auto sm:px-8 lg:flex-row lg:gap-12 lg:pt-10">
+		<DocsSidebar activeSlug={slug} client:load transition:persist="docs-sidebar" />
+		<div class="flex flex-col flex-1 min-w-0 gap-6" transition:animate="fade">
+			<DocsContent slug={slug} client:load />
+		</div>
+	</div>
 </BaseLayout>

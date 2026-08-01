@@ -15,7 +15,7 @@ super powers comes responsibility.
     - [x] Accordion
     - [x] Badges
     - [x] Breadcrumb
-    - Cards
+    - [x] Cards
     - [x] Carousel
     - [x] Input
     - [x] Modal

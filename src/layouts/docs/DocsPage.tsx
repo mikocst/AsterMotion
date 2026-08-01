@@ -2,6 +2,7 @@ import { docsRegistry } from 'src/lib/docsRegistry';
 import { guidesRegistry } from 'src/lib/guidesRegistry';
 import CodeBlock from '@components/Library/CodeBlock';
 import DocsSidebar from './DocsSidebar';
+import DocsMarkdown from './DocsMarkdown';
 
 interface DocsPageProps {
   slug: string;
@@ -52,6 +53,31 @@ const DocsPage = ({ slug }: DocsPageProps) => {
         <div className="flex items-center justify-center w-full p-8 overflow-x-auto border border-gray-200 rounded-lg bg-gray-50/50">
           <Demo />
         </div>
+
+        {entry.docs && (
+          <section className="flex flex-col gap-3">
+            <h2 className="text-lg font-semibold text-primary">Props & Styling</h2>
+            <DocsMarkdown source={entry.docs} />
+          </section>
+        )}
+
+        {entry.variants && entry.variants.length > 0 && (
+          <section className="flex flex-col gap-3">
+            <h2 className="text-lg font-semibold text-primary">Variants</h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {entry.variants.map((variant) => (
+                <div
+                  key={variant.label}
+                  className="flex flex-col gap-2 p-4 overflow-x-auto border border-gray-200 rounded-lg bg-gray-50/50"
+                >
+                  <p className="text-sm font-medium text-gray-700">{variant.label}</p>
+                  {variant.description && <p className="text-xs text-gray-400">{variant.description}</p>}
+                  <div className="flex items-center justify-center flex-1 p-4">{variant.node}</div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         <CodeBlock files={entry.code} />
       </div>

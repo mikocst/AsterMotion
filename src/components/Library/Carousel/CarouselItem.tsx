@@ -24,8 +24,9 @@ const CarouselItem = ({item, id}: CarouselItemProps) => {
   }, [])
 
   return (
-    <motion.div 
+    <motion.div
     id = {itemId}
+    initial = {myIndex === context.activeIndex ? {scale: 1 ,filter: 'blur(0px)'} : {scale: 0.95,filter: 'blur(10px)'}}
     animate = {myIndex === context.activeIndex ? {scale: 1 ,filter: 'blur(0px)'} : {scale: 0.95,filter: 'blur(10px)'}}
     transition = {{ease: 'easeInOut', duration: 0.2}}
     style={{width: context.itemWidth, minWidth: context.itemWidth}}

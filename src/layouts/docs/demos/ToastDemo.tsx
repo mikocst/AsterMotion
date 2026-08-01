@@ -19,7 +19,7 @@ const ToastTrigger = () => {
 const ToastDemo = () => (
   <ToastProvider>
     <ToastTrigger />
-    <Toaster position="top-right" expandedOnHover />
+    <Toaster position="bottom-right" expandedOnHover />
   </ToastProvider>
 );
 
